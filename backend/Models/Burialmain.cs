@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 // Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
 // If you have enabled NRTs for your project, then un-comment the following line:
@@ -9,6 +10,7 @@ namespace backend.Models
 {
     public partial class Burialmain
     {
+        [Key]
         public long Id { get; set; }
         public string Squarenorthsouth { get; set; }
         public string Headdirection { get; set; }
@@ -29,7 +31,9 @@ namespace backend.Models
         public string Westtohead { get; set; }
         public string Samplescollected { get; set; }
         public string Area { get; set; }
+
         public long? Burialid { get; set; }
+
         public string Length { get; set; }
         public string Burialnumber { get; set; }
         public string Dataexpertinitials { get; set; }

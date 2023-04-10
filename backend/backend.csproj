@@ -6,7 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Models\ViewModels\NewFile.txt" />
     <None Remove="Views\Home\NewFile.txt" />
+    <None Remove="Views\Shared\NewFile.txt" />
   </ItemGroup>
 
   <ItemGroup>

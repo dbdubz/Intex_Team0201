@@ -1,1 +1,9 @@
-﻿
+﻿@{
+}
+
+@model List<Burialmain>
+
+@foreach(Burialmain b in Model)
+{
+    <partial name="BurialSummary" model="b" />
+}
