@@ -11,16 +11,19 @@ namespace backend.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private mummyContext _mummyContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(mummyContext data) //Bring in the _mummyContext.
         {
-            _logger = logger;
+            _mummyContext = data;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var x = _mummyContext.Burialmain
+                .ToList();
+
+            return View(x);
         }
 
         public IActionResult Summary()
