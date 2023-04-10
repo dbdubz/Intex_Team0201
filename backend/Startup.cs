@@ -76,9 +76,18 @@ namespace backend
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("typepage",
+                  "Home/Summary/{sex}/Page{pageNum}",
+                  new { Controller = "Home", action = "Summary" });
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                  name: "Paging",
+                  pattern: "Home/Summary/Page{pageNum}",
+                  defaults: new { Controller = "Home", action = "Summary", pageNum = 1 }
+                  );
+                endpoints.MapControllerRoute("type",
+                  "Home/Summary/{sex}",
+                  new { Controller = "Home", action = "Summary", pageNum = 1 });
+                endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });
         }
