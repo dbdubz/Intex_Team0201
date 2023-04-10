@@ -77,15 +77,15 @@ namespace backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("typepage",
-                  "{sex}/Page{pageNum}",
+                  "Home/Summary/{sex}/Page{pageNum}",
                   new { Controller = "Home", action = "Summary" });
                 endpoints.MapControllerRoute(
                   name: "Paging",
-                  pattern: "Page{pageNum}",
+                  pattern: "Home/Summary/Page{pageNum}",
                   defaults: new { Controller = "Home", action = "Summary", pageNum = 1 }
                   );
                 endpoints.MapControllerRoute("type",
-                  "{sex}",
+                  "Home/Summary/{sex}",
                   new { Controller = "Home", action = "Summary", pageNum = 1 });
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();

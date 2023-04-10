@@ -370,3 +370,4 @@ C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backe
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.dll
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.pdb
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.genruntimeconfig.cache
+C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Sex\Default.cshtml.g.cs
