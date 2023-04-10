@@ -23,6 +23,21 @@ namespace backend.Controllers
             return View();
         }
 
+        public IActionResult Summary()
+        {
+            return View();
+        }
+
+        public IActionResult Supervised()
+        {
+            return View();
+        }
+
+        public IActionResult Unsupervised()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
