@@ -2,20 +2,22 @@
 }
 
 @model BurialViewModel
-<div className="col-4">
-    <div className="border">
-        <vc:Sex></vc:Sex>
+<div className="container">
+    <div className="col-4">
+        <div className="border">
+            <vc:Sex></vc:Sex>
+        </div>
     </div>
-</div>
 
-<div className="col">
-@foreach(Burialmain b in Model.Burialmains)
-{
-    <partial name="BurialSummary" model="b" />
-}
+    <div className="col">
+    @foreach(Burialmain b in Model.Burialmains)
+    {
+        <partial name="BurialSummary" model="b" />
+    }
 
-<div page-model="@Model.PageInfo" page-action="Summary" page-class="btn"
-     page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true"
-     class="btn-group pull-right m-1"></div>
+    <div page-model="@Model.PageInfo" page-action="Summary" page-class="btn"
+         page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true"
+         class="btn-group pull-right m-1"></div>
 
+    </div>
 </div>
