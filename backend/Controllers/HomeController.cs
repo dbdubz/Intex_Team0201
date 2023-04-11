@@ -37,23 +37,27 @@ namespace backend.Controllers
                 }
                 else
                 {
+                    ViewData["ViewName"] = "Index";
                     return View();
                 }
             }
             else
             {
+                ViewData["ViewName"] = "Index";
                 return View();
             }
         }
 
-        public IActionResult Summary(string sex, int pageNum = 1)
+        public IActionResult Summary(string sex, string HeadDirection, string BurialDepth, string haircolor, string age, int pageNum = 1)
         {
-            int pageSize = 100;
+            int pageSize = 25;
+
+            //need to add a new query to accomodate the Color table for textilecolor, the Function table for textile function, and the Structure table for textilestructure
 
             var x = new BurialViewModel
             {
                 Burialmains = _mummyContext.Burialmain
-                    .Where(bury => bury.Sex == sex || sex == null)
+                    .Where(bury => bury.Sex == sex || sex == null && bury.Headdirection == HeadDirection || HeadDirection == null && bury.BurialDepth == BurialDepth || BurialDepth == null && bury.Haircolor == haircolor || haircolor == null && bury.Ageatdeath == age || age == null)
                     .OrderBy(bury => bury.Id)
                     .Skip((pageNum - 1) * pageSize)
                     .Take(pageSize),

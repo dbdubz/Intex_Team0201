@@ -117,7 +117,15 @@ namespace backend.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        if (User.IsInRole("authenticated") && !user.TwoFactorEnabled)
+                        {
+                            return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+                        }
+                        else
+                        {
+                            return Redirect("/Identity/Account/Login");
+                        }
+                        //return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {

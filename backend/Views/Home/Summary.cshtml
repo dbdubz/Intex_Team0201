@@ -6,14 +6,26 @@
           integrity="sha512-ZYg+hQvLlM0W9C3P6vTpes5LmJ66G2EsroxDNzwD6qiulckldb29eD9I672HL2X+LH5nRhY1sQqZLJGB+aUUPg==" 
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+     
 <div class="row m-1 p-1">
-    <div id="categories" class="col-3">
-            <vc:Sex></vc:Sex>
-            <vc:HeadDirection></vc:HeadDirection>
-            <br />
-    </div>
+        <div id="categories" class="col-3">
+            <form asp-action="Summary" method="Post">
+                <div class="Form-group">
+                    <label>Filters:</label> <br/>
+                    <vc:Sex></vc:Sex> <br/>
+                    <vc:head-direction></vc:head-direction> <br/>
+                    <vc:burial-depth></vc:burial-depth> <br/>
+                    <vc:hair-color></vc:hair-color> <br/>
+                    <vc:age-at-death></vc:age-at-death> <br/>
+                    <vc:textile-color></vc:textile-color> <br/>
+                    <vc:textile-function></vc:textile-function> <br/>
+                    <br />
+                </div>
+                <button type="submit" class="btn btn-success btn-sm" id="filter" name="filter">Search</button>
+            </form>
+        </div>
 
-    <div className="col">
+    <div class="col">
     @foreach(Burialmain b in Model.Burialmains)
     {
         <partial name="BurialSummary" model="b" />

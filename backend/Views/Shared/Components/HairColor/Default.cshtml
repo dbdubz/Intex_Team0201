@@ -1,0 +1,14 @@
+﻿@{
+}
+
+@model IEnumerable<string>
+<div class="d-grid gap-2">
+    <h6>Hair Color</h6>
+    @foreach (string t in Model)
+    {
+        <input asp-controller="Home" asp-action="Summary" asp-route-HairColor="@t" asp-route-pageNum="1"
+            class="checkbox" type="checkbox" value="@t">@t
+        <br/>
+    }
+
+</div>

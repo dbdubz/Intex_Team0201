@@ -3,12 +3,12 @@
 
 @model IEnumerable<string>
 <div class="d-grid gap-2">
-    <a asp-controller="Home" asp-action="Summary" asp-route-sex="" asp-route-pageNum="1" class="btn btn-outline-secondary">Home</a>
-
+    <h6>Sex</h6>
     @foreach (string t in Model)
     {
-        <a asp-controller="Home" asp-action="Summary" asp-route-sex="@t" asp-route-pageNum="1"
-           class="btn @(ViewBag.SelectedType == t ? "btn-primary" : "btn-outline-secondary")">@t</a>
+        <input asp-controller="Home" asp-action="Summary" asp-route-sex="@t" asp-route-pageNum="1"
+           class="checkbox" type="checkbox" value="@t">@t
+        <br/>
     }
 
 </div>

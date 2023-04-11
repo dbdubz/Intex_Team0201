@@ -1,1 +1,117 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Supervised Analysis";
+}
+
+<div>
+    <form class="form-group">
+        <h3>Burial Location</h3>
+        <label for="squarenorthsouth">Square North/South</label>
+        <input id="squarenorthsouth" type="number">
+        <br>
+
+        <label for="northsouth">North/South</label>
+        <select id="northsouth">
+            <option value="N">N</option>
+            <option value="S">S</option>
+        </select>
+        <br>
+
+        <label for="squareeastwest">Square East/West</label>
+        <input id="squareeastwest" type="number">
+        <br>
+
+        <label for="eastwest">East/West</label>
+        <select id="eastwest">
+            <option value="E">E</option>
+            <option value="W">W</option>
+        </select>
+        <br><br>
+
+        <h3>Burial Info</h3>
+        <label for="burialdepth">Burial Depth</label>
+        <input id="burialdepth" type="number">
+        <br>
+
+        <label for="facebundles">Face Bundles</label>
+        <select id="facebundles">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+        <br>
+
+        <label for="southtohead">South to Head</label>
+        <input id="southtohead" type="number">
+        <br>
+
+        <label for="southtofeet">South to Feet</label>
+        <input id="southtofeet" type="number">
+        <br>
+
+        <label for="westtohead">West to Head</label>
+        <input id="westtohead" type="number">
+        <br>
+
+        <label for="westtofeet">West to Feet</label>
+        <input id="westtofeet" type="number">
+        <br>
+
+        <label for="buriallength">Burial Length</label>
+        <input id="buriallength" type="number">
+        <br>
+
+        <label for="goods">Goods</label>
+        <select id="goods">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+        <br>
+
+        <label for="samplescollected">Samples Collected</label>
+        <select id="samplescollected">
+            <option value="true">True</option>
+            <option value="false">False</option>
+        </select>
+        <br>
+
+        <label for="adultsubadult">Adult Subadult</label>
+        <select id="adultsubadult">
+            <option value="A">Adult</option>
+            <option value="C">Child</option>
+        </select>
+        <br>
+
+        <label for="wrapping">Wrapping</label>
+        <select id="wrapping">
+            <option value="B">Bones and/or partial remnants of wrapping remains</option>
+            <option value="H">Partial wrapping remains</option>
+            <option value="W">Full or nearly full wrapping remains</option>
+        </select>
+        <br>
+
+        <label for="area">Area</label>
+        <select id="area">
+            <option value="NE">North East</option>
+            <option value="NW">North West</option>
+            <option value="SE">South East</option>
+            <option value="SW">South West</option>
+        </select>
+        <br>
+
+        <label for="ageatdeath">Age at Death</label>
+        <select id="ageatdeath">
+            <option value="A">Adult - years 15+</option>
+            <option value="C">Child - years 3-15</option>
+            <option value="I">Infant - years 1-3</option>
+            <option value="N">Newborn - years 0-1</option>
+        </select>
+        <br>
+        <br>
+
+
+        <button type="submit">Predict Head Direction</button>
+     </form>
+
+     <div>
+         <h3 name="headdirection"></h3>
+     </div>
+</div>
