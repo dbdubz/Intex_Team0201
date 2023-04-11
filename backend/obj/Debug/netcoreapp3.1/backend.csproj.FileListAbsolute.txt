@@ -330,11 +330,6 @@ C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backe
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.RazorAssemblyInfo.cache
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.RazorAssemblyInfo.cs
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\backend.StaticWebAssets.Manifest.cache
-C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\backend.StaticWebAssets.Pack.cache
-C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.backend.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.build.backend.props
-C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.backend.props
-C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.backend.props
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\backend.StaticWebAssets.xml
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.TagHelpers.input.cache
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.TagHelpers.output.cache
@@ -371,3 +366,4 @@ C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backe
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.pdb
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.genruntimeconfig.cache
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Sex\Default.cshtml.g.cs
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\scopedcss\bundle\backend.styles.css
