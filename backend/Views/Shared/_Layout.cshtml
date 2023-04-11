@@ -38,14 +38,13 @@
             </div>
         </nav>
     </header>
-    <partial name="_CookieConsentPartial" />
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="border-top footer text-muted">
+        <partial name="_CookieConsentPartial" />
         <div class="container">
             &copy; 2023 - backend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
