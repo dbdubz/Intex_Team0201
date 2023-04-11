@@ -371,3 +371,11 @@ C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\scope
 =======
 C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
 >>>>>>> Pagination
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.Auth.PlatformServices.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.Auth.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.Core.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Home\Testing.cshtml.g.cs
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Sex\Default.cshtml.g.cs
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs

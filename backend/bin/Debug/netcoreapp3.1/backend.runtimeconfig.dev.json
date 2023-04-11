@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\sdcab\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\sdcab\\.nuget\\packages"
+      "C:\\Users\\dalyn\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\dalyn\\.nuget\\packages"
     ]
   }
 }
