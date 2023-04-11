@@ -97,7 +97,6 @@ C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreap
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Npgsql.dll
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
-C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\scopedcss\bundle\backend.styles.css
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll
@@ -182,3 +181,10 @@ C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreap
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Register.cshtml.g.cs
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Manage\Index.cshtml.g.cs
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Home\Testing.cshtml.g.cs
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\scopedcss\bundle\backend.styles.css
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.Auth.PlatformServices.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.Auth.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Google.Apis.Core.dll
+C:\Users\dalyn\Dropbox\2_IS_CORE_CODE\Intex_Team0201\backend\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
