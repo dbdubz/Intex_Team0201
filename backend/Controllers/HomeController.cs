@@ -34,10 +34,10 @@ namespace backend.Controllers
             var x = new BurialViewModel
             {
                 Burialmains = _mummyContext.Burialmain
-                .Where(bury => bury.Sex == sex || sex == null)
-                .OrderBy(bury => bury.Id)
-                .Skip((pageNum - 1) * pageSize)
-                .Take(pageSize),
+                    .Where(bury => bury.Sex == sex || sex == null)
+                    .OrderBy(bury => bury.Id)
+                    .Skip((pageNum - 1) * pageSize)
+                    .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
