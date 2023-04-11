@@ -1,0 +1,5 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/backend/obj/Debug/netcoreapp3.1/staticwebassets/backend.StaticWebAssets.Pack.cache
