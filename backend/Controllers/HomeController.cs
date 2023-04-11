@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using backend.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace backend.Controllers
 {
@@ -16,16 +17,33 @@ namespace backend.Controllers
     {
         private mummyContext _mummyContext { get; set; }
         private RoleManager<IdentityRole> _roleManager { get; set; }
+        private UserManager<IdentityUser> _userManager { get; set; }
 
-        public HomeController(mummyContext data, RoleManager<IdentityRole> roleManager) //Bring in the _mummyContext.
+        public HomeController(mummyContext data, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager) //Bring in the _mummyContext.
         {
             _mummyContext = data;
             _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
-        {
-            return View();
+        { 
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = _userManager.FindByNameAsync(User.Identity.Name);
+                if (User.IsInRole("authenticated") && !user.Result.TwoFactorEnabled)
+                {
+                    return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Summary(string sex, int pageNum = 1)
@@ -52,22 +70,24 @@ namespace backend.Controllers
             return View(x);
         }
 
-
-
-
-
-
-            //var GetAll = from E in _mummyContext.Burialmain join BACJ in BurialmainBodyanalysischart on BurialmainBodyanalysischart.MainBurialmainid equals Burialmain.Burialid
-            //             from BACJ in _mummyContext.BurialmainBodyanalysischart join BAC in Bodyanalysischart on BACJ.MainBodyanalysischartid equals BAC.Id
-
-            //var GetAll = from E in _mummyContext.Burialmain
-            //             join BT in _mummyContext.BurialmainTextile on _mummyContext.BurialmainTextile.MainBurialmainid equals _mummyContext.Burialmain.Id
-            //             join T in _mummyContext.Textile on _mummyContext.BurialmainTextile.MainTextileid equals T.Id
-            //             select new BurialViewModel { Burialmains = E, BurialmainTextiles = BT, Textiles = T };
-
-            //return View(GetAll);
-
         
+
+
+
+
+
+
+        //var GetAll = from E in _mummyContext.Burialmain join BACJ in BurialmainBodyanalysischart on BurialmainBodyanalysischart.MainBurialmainid equals Burialmain.Burialid
+        //             from BACJ in _mummyContext.BurialmainBodyanalysischart join BAC in Bodyanalysischart on BACJ.MainBodyanalysischartid equals BAC.Id
+
+        //var GetAll = from E in _mummyContext.Burialmain
+        //             join BT in _mummyContext.BurialmainTextile on _mummyContext.BurialmainTextile.MainBurialmainid equals _mummyContext.Burialmain.Id
+        //             join T in _mummyContext.Textile on _mummyContext.BurialmainTextile.MainTextileid equals T.Id
+        //             select new BurialViewModel { Burialmains = E, BurialmainTextiles = BT, Textiles = T };
+
+        //return View(GetAll);
+
+
 
         public IActionResult Supervised()
         {
@@ -79,25 +99,56 @@ namespace backend.Controllers
             return View();
         }
 
-        [Authorize(Roles="authorized")]
+        [Authorize(Roles="authenticated")]
         public IActionResult CreateRole()
         {
-            return View(new IdentityRole());
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = _userManager.FindByNameAsync(User.Identity.Name);
+                if (User.IsInRole("authenticated") && !user.Result.TwoFactorEnabled)
+                {
+                    return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+                }
+                else
+                {
+                    return View(new IdentityRole());
+                }
+            }
+            else
+            {
+                return View(new IdentityRole());
+            }
         }
 
-        [Authorize(Roles = "authorized")]
+        [Authorize(Roles = "authenticated")]
         [HttpPost]
         public async Task<IActionResult> CreateRole(IdentityRole role)
         {
-            await _roleManager.CreateAsync(role);
-            return RedirectToAction("CreateRole");
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+            if (!user.Result.TwoFactorEnabled)
+            {
+                return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+            }
+            else
+            {
+                await _roleManager.CreateAsync(role);
+                return RedirectToAction("CreateRole");
+            }
         }
 
-        [Authorize(Roles = "authorized")]
+        [Authorize(Roles = "authenticated")]
         public IActionResult ViewRoles()
         {
-            var roles = _roleManager.Roles.ToList();
-            return View(roles);
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+            if (!user.Result.TwoFactorEnabled)
+            {
+                return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+            }
+            else
+            {
+                var roles = _roleManager.Roles.ToList();
+                return View(roles);
+            }
         }
 
         public IActionResult Privacy()
