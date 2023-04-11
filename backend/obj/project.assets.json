@@ -9106,19 +9106,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sdcab\\.nuget\\packages\\": {}
+    "C:\\Users\\dalyn\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sdcab\\source\\repos\\Intex_Team0201\\backend\\backend.csproj",
+      "projectUniqueName": "C:\\Users\\dalyn\\Dropbox\\2_IS_CORE_CODE\\Intex_Team0201\\backend\\backend.csproj",
       "projectName": "backend",
-      "projectPath": "C:\\Users\\sdcab\\source\\repos\\Intex_Team0201\\backend\\backend.csproj",
-      "packagesPath": "C:\\Users\\sdcab\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sdcab\\source\\repos\\Intex_Team0201\\backend\\obj\\",
+      "projectPath": "C:\\Users\\dalyn\\Dropbox\\2_IS_CORE_CODE\\Intex_Team0201\\backend\\backend.csproj",
+      "packagesPath": "C:\\Users\\dalyn\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dalyn\\Dropbox\\2_IS_CORE_CODE\\Intex_Team0201\\backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sdcab\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dalyn\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9205,8 +9205,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.415\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.416\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\dalyn\\Dropbox\\2_IS_CORE_CODE\\Intex_Team0201\\backend\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
