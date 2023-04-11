@@ -367,3 +367,7 @@ C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backe
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\backend.genruntimeconfig.cache
 C:\Users\sdcab\Source\Repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Sex\Default.cshtml.g.cs
 C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\scopedcss\bundle\backend.styles.css
+<<<<<<< HEAD
+=======
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
+>>>>>>> Pagination
