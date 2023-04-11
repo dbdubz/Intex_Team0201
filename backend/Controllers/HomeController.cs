@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace backend.Controllers
 {
@@ -57,18 +58,21 @@ namespace backend.Controllers
             return View();
         }
 
+        [Authorize(Roles = "authenticated")]
         public IActionResult CreateRole()
         {
             return View(new IdentityRole());
         }
 
         [HttpPost]
+        [Authorize(Roles="authenticated")]
         public async Task<IActionResult> CreateRole(IdentityRole role)
         {
             await _roleManager.CreateAsync(role);
             return RedirectToAction("CreateRole");
         }
 
+        [Authorize(Roles = "authenticated")]
         public IActionResult ViewRoles()
         {
             var roles = _roleManager.Roles.ToList();
