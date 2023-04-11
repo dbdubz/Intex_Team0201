@@ -8,7 +8,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.Models.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 
 namespace backend.Controllers
 {
@@ -25,15 +24,37 @@ namespace backend.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.X = _mummyContext.Burialmain
-                .ToList();
-
             return View();
         }
 
-        public IActionResult Summary()
+        public IActionResult Summary(string sex, int pageNum = 1)
         {
-            var Mummies = _mummyContext.Burialmain.ToList();
+            int pageSize = 100;
+
+            var x = new BurialViewModel
+            {
+                Burialmains = _mummyContext.Burialmain
+                .Where(bury => bury.Sex == sex || sex == null)
+                .OrderBy(bury => bury.Id)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumBooks = (sex == null
+                        ? _mummyContext.Burialmain.Count()
+                        : _mummyContext.Burialmain.Where(x => x.Sex == sex).Count()),
+                    BooksPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+            return View(x);
+        }
+
+
+
+
+
 
             //var GetAll = from E in _mummyContext.Burialmain join BACJ in BurialmainBodyanalysischart on BurialmainBodyanalysischart.MainBurialmainid equals Burialmain.Burialid
             //             from BACJ in _mummyContext.BurialmainBodyanalysischart join BAC in Bodyanalysischart on BACJ.MainBodyanalysischartid equals BAC.Id
@@ -45,8 +66,7 @@ namespace backend.Controllers
 
             //return View(GetAll);
 
-            return View(Mummies);
-        }
+        
 
         public IActionResult Supervised()
         {
@@ -58,21 +78,18 @@ namespace backend.Controllers
             return View();
         }
 
-        [Authorize(Roles = "authenticated")]
         public IActionResult CreateRole()
         {
             return View(new IdentityRole());
         }
 
         [HttpPost]
-        [Authorize(Roles="authenticated")]
         public async Task<IActionResult> CreateRole(IdentityRole role)
         {
             await _roleManager.CreateAsync(role);
             return RedirectToAction("CreateRole");
         }
 
-        [Authorize(Roles = "authenticated")]
         public IActionResult ViewRoles()
         {
             var roles = _roleManager.Roles.ToList();
