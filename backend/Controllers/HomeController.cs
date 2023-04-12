@@ -53,7 +53,53 @@ namespace backend.Controllers
         {
             var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
 
+            //long id1 = SingleBurial.Id;
+           
+            //var interTable = _mummyContext.BurialmainTextile.Single(y => y.MainBurialmainid == id1);
+
+            //long id2 = interTable.MainTextileid;
+
+            //ViewBag.Textile = _mummyContext.Textile.Single(x => x.Id == id2);
+
             return View("Details", SingleBurial);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Burialmain ar) //HTTP post to save data when a post is done.
+        {
+            if (ModelState.IsValid)
+            {
+                _mummyContext.Add(ar);
+                _mummyContext.SaveChanges();
+                return View("Summary");
+            }
+            else //Stay in view if not a valid modelstate.
+            {
+                return View();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(long burialid)
+        {
+            var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
+
+            return View("Delete", SingleBurial);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Burialmain ar)
+        {
+            //The argument passed is the id of the model that you want to delete.
+            _mummyContext.Burialmain.Remove(ar);
+            _mummyContext.SaveChanges();
+            return RedirectToAction("Summary");
         }
 
         [HttpGet]
