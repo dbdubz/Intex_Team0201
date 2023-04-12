@@ -4,11 +4,11 @@
 @model IEnumerable<string>
 <div class="d-grid gap-2">
     <h6>Burial Depth</h6>
-    @foreach (string t in Model)
-    {
-        <input asp-controller="Home" asp-action="Summary" asp-route-BurialDepth="@t" asp-route-pageNum="1"
-            class="checkbox" type="checkbox" value="@t">@t
-        <br/>
-    }
+    <select>
+        @foreach (string t in Model)
+        {
+            <option asp-route-BurialDepth="@t">@t</option>
+        }
+    </select>
 
 </div>

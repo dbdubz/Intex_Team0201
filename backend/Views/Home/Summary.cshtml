@@ -9,8 +9,8 @@
      
 <div class="row m-1 p-1">
         <div id="categories" class="col-3">
-            <form asp-action="Summary" method="Post">
-                <div class="Form-group">
+            <form asp-action="Summary" method="get">
+                <!--<div class="Form-group">
                     <label>Filters:</label> <br/>
                     <vc:Sex></vc:Sex> <br/>
                     <vc:head-direction></vc:head-direction> <br/>
@@ -20,7 +20,120 @@
                     <vc:textile-color></vc:textile-color> <br/>
                     <vc:textile-function></vc:textile-function> <br/>
                     <br />
+                </div>-->
+                 <div class="form-group">
+                    <label for="id">Burial Id</label>
+                    <select name="id">
+                        <option selected hidden></option>
+
+                        @foreach (var x in ViewBag.BurialId)
+                        {
+
+                            @if (x == ViewBag.SelectedBurialId)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label for="sex">Sex</label>
+                    <select name="sex">
+                        <option selected hidden></option>
+
+                        @foreach (var x in ViewBag.Sex)
+                        {
+
+                            @if (x == ViewBag.SelectedSex)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="headdirection">Head Direction</label>
+                    <select name="headdirection">
+                        <option selected hidden></option>
+
+                        @foreach (var x in ViewBag.HeadDirection)
+                        {
+                            @if (x == ViewBag.SelectedHeadDirection)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="burialdepth">Burial Depth</label>
+                    <select name="burialdepth">
+
+                        <option selected hidden></option>
+
+                        @foreach (var x in ViewBag.BurialDepth)
+                        {
+                            @if (x == ViewBag.SelectedBurialDepth)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="haircolor">Hair Color</label>
+                    <select name="haircolor">
+                        <option selected hidden></option>
+
+                        @foreach (var x in ViewBag.HairColor)
+                        {
+                            @if (x == ViewBag.SelectedHairColor)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age at Death</label>
+                    <select name="age">
+                        <option selected hidden></option>
+
+                        @foreach (var x in ViewBag.AgeAtDeath)
+                        {
+                            @if (x == ViewBag.SelectedAgeAtDeath)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                
+                
                 <button type="submit" class="btn btn-success btn-sm" id="filter" name="filter">Search</button>
             </form>
         </div>

@@ -4,11 +4,11 @@
 @model IEnumerable<string>
 <div class="d-grid gap-2">
     <h6>Age At Death</h6>
-    @foreach (string t in Model)
-    {
-        <input asp-controller="Home" asp-action="Summary" asp-route-AgeAtDeath="@t" asp-route-pageNum="1"
-           class="checkbox" type="checkbox" name="ageatdeath" value="@t">@t
-        <br/>
-    }
+    <select>
+        @foreach (string t in Model)
+        {
+            <option asp-route-AgeAtDeath="@t">@t</option>
+        }
+    </select>
 
 </div>
