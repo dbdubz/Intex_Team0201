@@ -1,0 +1,30 @@
+﻿
+                <div class="form-group">
+                    <label for="estimatestature">Estimate Stature</label>
+                    <select name="estimatestature">
+                        @if (ViewBag.SelectedEstimateStature == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.EstimateStature)
+                        {
+                            if (x == null && ViewBag.SelectedEstimateStature == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x.Estimatestature.ToString() == null || x.Estimatestature.ToString().Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x.Estimatestature.ToString() == ViewBag.SelectedEstimateStature)
+                            {
+                                <option value="@x.Estimatestature" selected>@x.Estimatestature</option>
+                            }
+                            else
+                            {
+                                <option value="@x.Estimatestature">@x.Estimatestature</option>
+                            }
+                        }
+                    </select>
+                </div>
