@@ -64,12 +64,14 @@ namespace backend.Controllers
             return View("Details", SingleBurial);
         }
 
+        [Authorize(Roles = "authenticated")]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "authenticated")]
         [HttpPost]
         public IActionResult Create(Burialmain ar) //HTTP post to save data when a post is done.
         {
@@ -85,6 +87,7 @@ namespace backend.Controllers
             }
         }
 
+        [Authorize(Roles = "authenticated")]
         [HttpGet]
         public IActionResult Delete(long burialid)
         {
@@ -93,6 +96,7 @@ namespace backend.Controllers
             return View("Delete", SingleBurial);
         }
 
+        [Authorize(Roles = "authenticated")]
         [HttpPost]
         public IActionResult Delete(Burialmain ar)
         {
@@ -102,6 +106,7 @@ namespace backend.Controllers
             return RedirectToAction("Summary");
         }
 
+        [Authorize(Roles = "authenticated")]
         [HttpGet]
         public IActionResult Edit(long burialid)
         {
@@ -110,6 +115,7 @@ namespace backend.Controllers
             return View("Edit", SingleBurial);
         }
 
+        [Authorize(Roles = "authenticated")]
         [HttpPost]
         public IActionResult Edit(Burialmain ar) //Update information in database for the movie.
         {
@@ -272,25 +278,6 @@ namespace backend.Controllers
 
             return View(x);
         }
-
-        
-
-
-
-
-
-
-        //var GetAll = from E in _mummyContext.Burialmain join BACJ in BurialmainBodyanalysischart on BurialmainBodyanalysischart.MainBurialmainid equals Burialmain.Burialid
-        //             from BACJ in _mummyContext.BurialmainBodyanalysischart join BAC in Bodyanalysischart on BACJ.MainBodyanalysischartid equals BAC.Id
-
-        //var GetAll = from E in _mummyContext.Burialmain
-        //             join BT in _mummyContext.BurialmainTextile on _mummyContext.BurialmainTextile.MainBurialmainid equals _mummyContext.Burialmain.Id
-        //             join T in _mummyContext.Textile on _mummyContext.BurialmainTextile.MainTextileid equals T.Id
-        //             select new BurialViewModel { Burialmains = E, BurialmainTextiles = BT, Textiles = T };
-
-        //return View(GetAll);
-
-
 
         public IActionResult Supervised()
         {
