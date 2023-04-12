@@ -1,0 +1,43 @@
+﻿@{
+}
+
+@model Burialmain
+
+    <div>
+        <ul>
+            <li>Id: @Model.Id</li>
+            <li>Squarenorthsouth: @Model.Squarenorthsouth</li>
+            <li>Headdirection: @Model.Headdirection</li>
+            <li>Sex: @Model.Sex</li>
+            <li>Northsouth: @Model.Northsouth</li>
+            <li>BurialDepth: @Model.BurialDepth</li>
+            <li>Eastwest: @Model.Eastwest</li>
+            <li>Adultsubadult: @Model.Adultsubadult</li>
+            <li>Facebundles: @Model.Facebundles</li>
+            <li>Southtohead: @Model.Southtohead</li>
+            <li>Preservation: @Model.Preservation</li>
+            <li>Fieldbookpage: @Model.Fieldbookpage</li>
+            <li>Squareeastwest: @Model.Squareeastwest</li>
+            <li>Goods: @Model.Goods</li>
+            <li>Text: @Model.Text</li>
+            <li>Wrapping: @Model.Wrapping</li>
+            <li>Hair: @Model.Hair</li>
+            <li>Haircolor: @Model.Haircolor</li>
+            <li>Westtohead: @Model.Westtohead</li>
+            <li>Samplescollected: @Model.Samplescollected</li>
+            <li>Burialid: @Model.Burialid</li>
+            <li>Burialnumber: @Model.Burialnumber</li>
+            <li>Dataexpertinitials: @Model.Dataexpertinitials</li>
+            <li>Westtofeet: @Model.Westtofeet</li>
+            <li>Ageatdeath: @Model.Ageatdeath</li>
+            <li>Excavationrecorder: @Model.Excavationrecorder</li>
+            <li>Photos: @Model.Photos</li>
+            <li>Burialmaterials: @Model.Burialmaterials</li>
+            <li>Dateofexcavation: @Model.Dateofexcavation</li>
+            <li>Fieldbookexcavationyear: @Model.Fieldbookexcavationyear</li>
+            <li>Clusternumber: @Model.Clusternumber</li>
+            <li>Shaftnumber: @Model.Shaftnumber</li>
+            <a asp-controller="Home" asp-action="Edit" asp-route-burialid="@Model.Id" class="btn-toolbar">Edit</a>
+        </ul>
+    </div>
+

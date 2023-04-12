@@ -18,4 +18,8 @@
         <li>Burial Number: @Model.Burialnumber</li>
         <li>Hair Color: @Model.Haircolor</li>
     </ul>
+
+    <p>
+        <h3>View More Details here: <a asp-controller="Home" asp-action="Details" asp-route-burialid="@Model.Id" class="btn-toolbar">Details</a></h3>
+    </p>
 </div>

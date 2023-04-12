@@ -49,6 +49,30 @@ namespace backend.Controllers
             }
         }
 
+        public IActionResult Details(long burialid)
+        {
+            var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
+
+            return View("Details", SingleBurial);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(long burialid)
+        {
+            var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
+
+            return View("Edit", SingleBurial);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Burialmain ar) //Update information in database for the movie.
+        {
+            _mummyContext.Update(ar);
+            _mummyContext.SaveChanges();
+
+            return RedirectToAction("Summary");
+        }
+
         public IActionResult Summary(string id, string sex, string headdirection, string burialdepth, string haircolor, string age, string textilecolor, string function, string structure, string estimatedstature, int pageNum = 1)
         {
             int pageSize = 25;
