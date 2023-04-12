@@ -64,15 +64,15 @@ namespace backend.Controllers
             return View("Details", SingleBurial);
         }
 
-        [Authorize(Roles = "authenticated")]
         [HttpGet]
+        [Authorize(Roles = "authenticated")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "authenticated")]
         [HttpPost]
+        [Authorize(Roles = "authenticated")]
         public IActionResult Create(Burialmain ar) //HTTP post to save data when a post is done.
         {
             if (ModelState.IsValid)
@@ -87,8 +87,8 @@ namespace backend.Controllers
             }
         }
 
-        [Authorize(Roles = "authenticated")]
         [HttpGet]
+        [Authorize(Roles = "authenticated")]
         public IActionResult Delete(long burialid)
         {
             var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
@@ -96,8 +96,8 @@ namespace backend.Controllers
             return View("Delete", SingleBurial);
         }
 
-        [Authorize(Roles = "authenticated")]
         [HttpPost]
+        [Authorize(Roles = "authenticated")]
         public IActionResult Delete(Burialmain ar)
         {
             //The argument passed is the id of the model that you want to delete.
@@ -106,8 +106,8 @@ namespace backend.Controllers
             return RedirectToAction("Summary");
         }
 
-        [Authorize(Roles = "authenticated")]
         [HttpGet]
+        [Authorize(Roles = "authenticated")]
         public IActionResult Edit(long burialid)
         {
             var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
@@ -115,8 +115,8 @@ namespace backend.Controllers
             return View("Edit", SingleBurial);
         }
 
-        [Authorize(Roles = "authenticated")]
         [HttpPost]
+        [Authorize(Roles = "authenticated")]
         public IActionResult Edit(Burialmain ar) //Update information in database for the movie.
         {
             _mummyContext.Update(ar);
@@ -310,8 +310,8 @@ namespace backend.Controllers
             }
         }
 
-        [Authorize(Roles = "authenticated")]
         [HttpPost]
+        [Authorize(Roles = "authenticated")]
         public async Task<IActionResult> CreateRole(IdentityRole role)
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name);
