@@ -28,7 +28,7 @@ namespace backend.Controllers
         }
 
         public IActionResult Index()
-        { 
+        {
             if (User.Identity.IsAuthenticated)
             {
                 var user = _userManager.FindByNameAsync(User.Identity.Name);
@@ -65,7 +65,8 @@ namespace backend.Controllers
             IQueryable<ColorTextile> textile_color_intermediary = _mummyContext.ColorTextile;
             IQueryable<Color> color = _mummyContext.Color;
             IQueryable<BurialmainTextile> burial_main_textile_intermediary = _mummyContext.BurialmainTextile;
-            if (!string.IsNullOrWhiteSpace(textilecolor)) {
+            if (!string.IsNullOrWhiteSpace(textilecolor))
+            {
                 //color = color.Where(c => c.Value == textilecolor).Distinct().ToList();
                 //textile_color_intermediary = textile_color_intermediary.Where(tc => tc.MainColorid == color.First().Colorid);
                 //var tc_list = textile_color_intermediary.Select(tc => tc.MainTextileid).ToList();
@@ -148,7 +149,7 @@ namespace backend.Controllers
             return View(x);
         }
 
-        
+
 
 
 
@@ -177,7 +178,7 @@ namespace backend.Controllers
             return View();
         }
 
-        [Authorize(Roles="authenticated")]
+        [Authorize(Roles = "authenticated")]
         public IActionResult CreateRole()
         {
             if (User.Identity.IsAuthenticated)
