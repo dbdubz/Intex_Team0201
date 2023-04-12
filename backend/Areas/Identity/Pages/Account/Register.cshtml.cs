@@ -119,13 +119,13 @@ namespace backend.Areas.Identity.Pages.Account
                     {
                         if (User.IsInRole("authenticated") && !user.TwoFactorEnabled)
                         {
-                            return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = "/Identity/Account/Manage/TwoFactorAuthentication" });
                         }
                         else
                         {
-                            return Redirect("/Identity/Account/Login");
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                         }
-                        //return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        
                     }
                     else
                     {
