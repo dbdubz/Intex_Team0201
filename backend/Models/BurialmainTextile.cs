@@ -11,5 +11,6 @@ namespace backend.Models
     {
         public long MainBurialmainid { get; set; }
         public long MainTextileid { get; set; }
+
     }
 }

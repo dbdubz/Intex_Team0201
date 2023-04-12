@@ -11,16 +11,16 @@
         <div id="categories" class="col-3">
             <form asp-action="Summary" method="get">
                 <!--<div class="Form-group">
-                    <label>Filters:</label> <br/>
-                    <vc:Sex></vc:Sex> <br/>
-                    <vc:head-direction></vc:head-direction> <br/>
-                    <vc:burial-depth></vc:burial-depth> <br/>
-                    <vc:hair-color></vc:hair-color> <br/>
-                    <vc:age-at-death></vc:age-at-death> <br/>
-                    <vc:textile-color></vc:textile-color> <br/>
-                    <vc:textile-function></vc:textile-function> <br/>
-                    <br />
-                </div>-->
+        <label>Filters:</label> <br/>
+        <vc:Sex></vc:Sex> <br/>
+        <vc:head-direction></vc:head-direction> <br/>
+        <vc:burial-depth></vc:burial-depth> <br/>
+        <vc:hair-color></vc:hair-color> <br/>
+        <vc:age-at-death></vc:age-at-death> <br/>
+        <vc:textile-color></vc:textile-color> <br/>
+        <vc:textile-function></vc:textile-function> <br/>
+        <br />
+    </div>-->
                 <div class="form-group">
                     <label for="id">Burial Id</label>
                     <select name="id">
@@ -210,17 +210,17 @@
                             {
                                 <option value="empty" selected>empty</option>
                             }
-                            else if (x == null || x.Trim() == "")
+                            else if (x == null || x.Value.Trim() == "")
                             {
                                 <option value="empty">empty</option>
                             }
                             else if (x == ViewBag.SelectedTextileFunction)
                             {
-                                <option value="@x" selected>@x</option>
+                                <option value="@x.Value" selected>@x.Value</option>
                             }
                             else
                             {
-                                <option value="@x">@x</option>
+                                <option value="@x.Value">@x.Value</option>
                             }
                         }
                     </select>
@@ -239,63 +239,66 @@
                             {
                                 <option value="empty" selected>empty</option>
                             }
-                            else if (x == null || x.Trim() == "")
+                            else if (x == null || x.Value == "")
                             {
                                 <option value="empty">empty</option>
                             }
-                            else if (x == ViewBag.SelectedTextileFunction)
+                            else if (x.Value == ViewBag.SelectedTextileFunction)
                             {
-                                <option value="@x" selected>@x</option>
+                                <option value="@x.Value" selected>@x.Value</option>
                             }
                             else
                             {
-                                <option value="@x">@x</option>
+                                <option value="@x.Value">@x.Value</option>
                             }
                         }
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="estimatestature">Estimate Stature</label>
-                    <select name="estimatestature">
-                        @if (ViewBag.SelectedEstimateStature == null)
+                    <label for="textilestructure">Textile Structure</label>
+                    <select name="textilestructure">
+                        @if (ViewBag.SelectedTextileStructure == null)
                         {
                             <option value="" selected></option>
                         }
 
-                        @foreach (var x in ViewBag.EstimateStature)
+                        @foreach (var x in ViewBag.TextileStructure)
                         {
-                            if (x == null && ViewBag.SelectedEstimateStature == "empty")
+                            if (x == null && ViewBag.SelectedTextileStructure == "empty")
                             {
                                 <option value="empty" selected>empty</option>
                             }
-                            else if (x == null || x.Trim() == "")
+                            else if (x == null || x.Value == "")
                             {
                                 <option value="empty">empty</option>
                             }
-                            else if (x == ViewBag.SelectedEstimateStature)
+                            else if (x.Value == ViewBag.SelectedTextileStructure)
                             {
-                                <option value="@x" selected>@x</option>
+                                <option value="@x.Value" selected>@x.Value</option>
                             }
                             else
                             {
-                                <option value="@x">@x</option>
+                                <option value="@x.Value">@x.Value</option>
                             }
                         }
                     </select>
                 </div>
+                <!-- ~~~~~~~~~~~~~~~~~~ Future home for Estimated structure when data is provided ~~~~~~~~~~~~~~~~~~ -->
+                <!-- ~~~~~~~~~~~~~~~~~~ Find skeleton code for html in EstimatedstructureHTML.txt inside in the backend root folder ~~~~~~~~~~~~~~~~~~ -->
                 <button type="submit" class="btn btn-success btn-sm" id="filter" name="filter">Search</button>
+                <a asp-controller="Home" asp-action="Summary" class="btn btn-success btn-sm">Clear</a>
             </form>
+            </div>
+
+        <div class="col">
+        @foreach(Burialmain b in Model.Burialmains)
+        {
+            <partial name="BurialSummary" model="b" />
+        }
+
+        <div page-model="@Model.PageInfo" page-action="Summary" page-class="btn"
+             page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true"
+             class="btn-group pull-right m-1"></div>
+
         </div>
-
-    <div class="col">
-    @foreach(Burialmain b in Model.Burialmains)
-    {
-        <partial name="BurialSummary" model="b" />
-    }
-
-    <div page-model="@Model.PageInfo" page-action="Summary" page-class="btn"
-         page-class-normal="btn-outline-dark" page-class-selected="btn-primary" page-classes-enabled="true"
-         class="btn-group pull-right m-1"></div>
-
     </div>
-</div>

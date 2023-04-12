@@ -65,15 +65,13 @@ namespace backend.Controllers
             IQueryable<ColorTextile> textile_color_intermediary = _mummyContext.ColorTextile;
             IQueryable<Color> color = _mummyContext.Color;
             IQueryable<BurialmainTextile> burial_main_textile_intermediary = _mummyContext.BurialmainTextile;
-            if (!string.IsNullOrWhiteSpace(textilecolor)) {
-                //color = color.Where(c => c.Value == textilecolor).Distinct().ToList();
-                //textile_color_intermediary = textile_color_intermediary.Where(tc => tc.MainColorid == color.First().Colorid);
-                //var tc_list = textile_color_intermediary.Select(tc => tc.MainTextileid).ToList();
-                //textile = textile.Where(t => tc_list.Contains(t.Id));
-                //var t_list = textile.Select(t => t.Burialnumber).ToList();
-                //textile = textile.Where(t => textile_color_intermediary.Select(tc => tc.MainTextileid).Distinct().ToList().Contains(t.Id));
-                //burial_main_textile_intermediary = burial_main_textile_intermediary.Where(bt => bt.MainTextileid == textile.)
-                //burial_main = burial_main.Where(burial => t_list.Contains(burial.Burialnumber));
+            if (!string.IsNullOrWhiteSpace(textilecolor))
+            {
+                color = color.Where(c => c.Value == textilecolor);
+                textile_color_intermediary = textile_color_intermediary.Where(tc => color.ToList().Select(c => c.Id).Contains(tc.MainColorid));
+                textile = textile.Where(t => textile_color_intermediary.ToList().Select(tc => tc.MainTextileid).Contains(t.Id));
+                burial_main_textile_intermediary = burial_main_textile_intermediary.Where(bt => textile.ToList().Select(t => t.Id).Contains(bt.MainTextileid));
+                burial_main = burial_main.Where(b => burial_main_textile_intermediary.ToList().Select(bt => bt.MainBurialmainid).Contains(b.Id));
             }
 
             IQueryable<TextilefunctionTextile> textile_function_intermediary = _mummyContext.TextilefunctionTextile.AsQueryable();
@@ -133,17 +131,74 @@ namespace backend.Controllers
             ViewBag.SelectedHairColor = haircolor;
             ViewBag.SelectedEstimateStature = estimatedstature;
             ViewBag.SelectedTextileColor = textilecolor;
+            ViewBag.SelectedTextileStructure = structure;
 
+            var colors = burial_main
+                .Join(burial_main_textile_intermediary, b => b.Id, bt => bt.MainBurialmainid, (b, bt) => new { b, bt })
+                .Join(textile, bbt => bbt.bt.MainTextileid, t => t.Id, (bbt, t) => new { bbt, t })
+                .Join(textile_color_intermediary, bbtt => bbtt.t.Id, ct => ct.MainTextileid, (bbtt, tc) => new { bbtt, tc })
+                .Join(color, bbtttc => bbtttc.tc.MainColorid, c => c.Id, (bbtttc, c) => new { bbtttc, c })
+                .Select(
+                    col => new
+                    {
+                        Id = col.c.Id,
+                        Value = col.c.Value.Trim()
+                    }
+                ).Distinct().ToList();
+            IQueryable<Color> finalcolors = color.Where(c => colors.Select(fc => fc.Id).ToList().Contains(c.Id));
 
-            ViewBag.Sex = _mummyContext.Burialmain.Select(burial => burial.Sex).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.BurialDepth = _mummyContext.Burialmain.Select(burial => burial.BurialDepth).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.AgeAtDeath = _mummyContext.Burialmain.Select(burial => burial.Ageatdeath).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.HeadDirection = _mummyContext.Burialmain.Select(burial => burial.Headdirection).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.BurialId = _mummyContext.Burialmain.Select(burial => burial.Burialid).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.HairColor = _mummyContext.Burialmain.Select(burial => burial.Haircolor).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.TextileFunction = _mummyContext.Textilefunction.Select(function => function.Value).Distinct().OrderBy(function => function).ToList();
-            ViewBag.TextileColor = _mummyContext.Color.Select(tc => tc.Value).Distinct().OrderBy(tc => tc).ToList();
-            ViewBag.EstimateStature = _mummyContext.Bodyanalysischart.Select(bas => bas.Estimatestature).Distinct().ToList();
+            var structures = burial_main
+                .Join(burial_main_textile_intermediary, b => b.Id, bt => bt.MainBurialmainid, (b, bt) => new { b, bt })
+                .Join(textile, bbt => bbt.bt.MainTextileid, t => t.Id, (bbt, t) => new { bbt, t })
+                .Join(textile_structure_intermediary, bbtt => bbtt.t.Id, ct => ct.MainTextileid, (bbtt, tc) => new { bbtt, tc })
+                .Join(structure_list, bbtttc => bbtttc.tc.MainStructureid, c => c.Id, (bbtttc, c) => new { bbtttc, c })
+                .Select(
+                    col => new
+                    {
+                        Id = col.c.Id,
+                        Value = col.c.Value.Trim()
+                    }
+                ).Distinct().ToList();
+            IQueryable<Structure> finalstructures = structure_list.Where(sl => structures.Select(s => s.Id).ToList().Contains(sl.Id));
+
+            var functions = burial_main
+                .Join(burial_main_textile_intermediary, b => b.Id, bt => bt.MainBurialmainid, (b, bt) => new { b, bt })
+                .Join(textile, bbt => bbt.bt.MainTextileid, t => t.Id, (bbt, t) => new { bbt, t })
+                .Join(textile_function_intermediary, bbtt => bbtt.t.Id, ct => ct.MainTextileid, (bbtt, tc) => new { bbtt, tc })
+                .Join(textile_function, bbtttc => bbtttc.tc.MainTextilefunctionid, c => c.Id, (bbtttc, c) => new { bbtttc, c })
+                .Select(
+                    col => new
+                    {
+                        Id = col.c.Id,
+                        Value = col.c.Value
+                    }
+                ).Distinct().ToList();
+            IQueryable<Textilefunction> finalfunctions = textile_function.Where(sl => functions.Select(s => s.Id).ToList().Contains(sl.Id));
+            
+            /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ THIS WILL WORK WHEN DATA IS PROVIDED ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            var statures = burial_main
+                .Join(bodyanalysis_intermediary, b => b.Id, bi => bi.MainBurialmainid, (b, bi) => new { b, bi })
+                .Join(bodyanalysis, bbi => bbi.bi.MainBodyanalysischartid, ba => ba.Id, (bbi, ba) => new { bbi, ba })
+                .Select(
+                    col => new
+                    {
+                        Id = col.ba.Id,
+                        Value = col.ba.Estimatestature
+                    }
+                ).Distinct().ToList();
+
+            IQueryable<Bodyanalysischart> finalstatures = bodyanalysis.Where(b => statures.Select(s => s.Id).ToList().Contains(b.Id));*/
+            
+            ViewBag.Sex = burial_main.Select(burial => burial.Sex).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.BurialDepth = burial_main.Select(burial => burial.BurialDepth).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.AgeAtDeath = burial_main.Select(burial => burial.Ageatdeath).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.HeadDirection = burial_main.Select(burial => burial.Headdirection).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.BurialId = burial_main.Select(burial => burial.Id.ToString()).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.HairColor = burial_main.Select(burial => burial.Haircolor).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.TextileFunction = finalfunctions.Distinct().OrderBy(f => f.Value).ToList();
+            ViewBag.TextileColor = finalcolors.Distinct().OrderBy(f => f.Value).ToList();
+            ViewBag.TextileStructure = finalstructures.Distinct().OrderBy(f => f.Value).ToList();
+            //ViewBag.EstimateStature = finalstatures.Distinct().OrderBy(f => f.Estimatestature).ToList(); ~~~~~ VIEWBAG FOR WHEN DATA IS ADDED ~~~~~
 
             return View(x);
         }
