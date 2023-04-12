@@ -47,14 +47,27 @@
 
                         @foreach (var x in ViewBag.Sex)
                         {
-
-                            @if (x == ViewBag.SelectedSex)
+                            @if (x == null)
                             {
-                                <option value="@x" selected>@x</option>
+                                @if (x == ViewBag.SelectedSex)
+                                {
+                                    <option value="x" selected>@x</option>
+                                }
+                                else
+                                {
+                                    <option value="@x">@x</option>
+                                }
                             }
                             else
                             {
-                                <option value="@x">@x</option>
+                                @if (x == ViewBag.SelectedSex)
+                                {
+                                    <option value="@x" selected>@x</option>
+                                }
+                                else
+                                {
+                                    <option value="@x">@x</option>
+                                }
                             }
                         }
                     </select>

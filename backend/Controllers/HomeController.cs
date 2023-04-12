@@ -54,7 +54,7 @@ namespace backend.Controllers
             int pageSize = 25;
 
             IQueryable<Burialmain> burial_main = _mummyContext.Burialmain.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(sex)) { burial_main = burial_main.Where(burial => burial.Sex == sex); }
+            if (!string.IsNullOrWhiteSpace(sex)) { burial_main = sex != "x" ? burial_main.Where(burial => burial.Sex == sex) : burial_main.Where(burial => burial.Sex == null); }
             if (!string.IsNullOrWhiteSpace(age)) { burial_main = burial_main.Where(burial => burial.Ageatdeath == age); }
             if (!string.IsNullOrWhiteSpace(id)) { burial_main = burial_main.Where(burial => Convert.ToString(burial.Id) == id); }
             if (!string.IsNullOrWhiteSpace(headdirection)) { burial_main = burial_main.Where(burial => burial.Headdirection == headdirection); }
