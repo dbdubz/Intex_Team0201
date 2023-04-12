@@ -51,22 +51,28 @@ namespace backend.Controllers
             return View(x);
         }
 
+        public IActionResult ViewDetails(long id)
+        {
+
+            var test = _mummyContext.Burialmain.Where(x => x.Id == id).ToList();
+
+            return View(test);
+        }
 
 
 
 
+        //var GetAll = from E in _mummyContext.Burialmain join BACJ in BurialmainBodyanalysischart on BurialmainBodyanalysischart.MainBurialmainid equals Burialmain.Burialid
+        //             from BACJ in _mummyContext.BurialmainBodyanalysischart join BAC in Bodyanalysischart on BACJ.MainBodyanalysischartid equals BAC.Id
 
-            //var GetAll = from E in _mummyContext.Burialmain join BACJ in BurialmainBodyanalysischart on BurialmainBodyanalysischart.MainBurialmainid equals Burialmain.Burialid
-            //             from BACJ in _mummyContext.BurialmainBodyanalysischart join BAC in Bodyanalysischart on BACJ.MainBodyanalysischartid equals BAC.Id
+        //var GetAll = from E in _mummyContext.Burialmain
+        //             join BT in _mummyContext.BurialmainTextile on _mummyContext.BurialmainTextile.MainBurialmainid equals _mummyContext.Burialmain.Id
+        //             join T in _mummyContext.Textile on _mummyContext.BurialmainTextile.MainTextileid equals T.Id
+        //             select new BurialViewModel { Burialmains = E, BurialmainTextiles = BT, Textiles = T };
 
-            //var GetAll = from E in _mummyContext.Burialmain
-            //             join BT in _mummyContext.BurialmainTextile on _mummyContext.BurialmainTextile.MainBurialmainid equals _mummyContext.Burialmain.Id
-            //             join T in _mummyContext.Textile on _mummyContext.BurialmainTextile.MainTextileid equals T.Id
-            //             select new BurialViewModel { Burialmains = E, BurialmainTextiles = BT, Textiles = T };
+        //return View(GetAll);
 
-            //return View(GetAll);
 
-        
 
         public IActionResult Supervised()
         {

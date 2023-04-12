@@ -371,3 +371,9 @@ C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\scope
 =======
 C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
 >>>>>>> Pagination
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\Razor\Views\Home\ViewDetails.cshtml.g.cs
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\backend.StaticWebAssets.Pack.cache
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.backend.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.build.backend.props
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildMultiTargeting.backend.props
+C:\Users\sdcab\source\repos\Intex_Team0201\backend\obj\Debug\netcoreapp3.1\staticwebassets\msbuild.buildTransitive.backend.props

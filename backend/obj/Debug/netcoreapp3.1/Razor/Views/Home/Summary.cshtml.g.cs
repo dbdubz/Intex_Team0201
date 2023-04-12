@@ -49,7 +49,9 @@ using backend.Components;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"07c49841579f0a2e9b5a872b3af6efeeaaf1eba2", @"/Views/Home/Summary.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9d386dae4d5b5c9240c51794f067e9111f115723", @"/Views/_ViewImports.cshtml")]
+    #nullable restore
     public class Views_Home_Summary : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<BurialViewModel>
+    #nullable disable
     {
         private global::AspNetCore.Views_Home_Summary.__Generated__SexViewComponentTagHelper __SexViewComponentTagHelper;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "BurialSummary", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -85,7 +87,7 @@ using backend.Components;
         {
             WriteLiteral("\r\n");
             WriteLiteral("<div className=\"container\">\r\n    <div className=\"col-4\">\r\n        <div className=\"border\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:Sex", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07c49841579f0a2e9b5a872b3af6efeeaaf1eba25913", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:Sex", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07c49841579f0a2e9b5a872b3af6efeeaaf1eba25959", async() => {
             }
             );
             __SexViewComponentTagHelper = CreateTagHelper<global::AspNetCore.Views_Home_Summary.__Generated__SexViewComponentTagHelper>();
@@ -107,7 +109,7 @@ using backend.Components;
 #line hidden
 #nullable disable
             WriteLiteral("        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "07c49841579f0a2e9b5a872b3af6efeeaaf1eba27115", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "07c49841579f0a2e9b5a872b3af6efeeaaf1eba27161", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();
@@ -138,7 +140,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper.Model = b;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07c49841579f0a2e9b5a872b3af6efeeaaf1eba28879", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("div", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "07c49841579f0a2e9b5a872b3af6efeeaaf1eba28925", async() => {
             }
             );
             __backend_Infrastructure_PaginationTagHelper = CreateTagHelper<global::backend.Infrastructure.PaginationTagHelper>();
@@ -178,16 +180,26 @@ __backend_Infrastructure_PaginationTagHelper.PageClassesEnabled = true;
             WriteLiteral("\r\n\r\n    </div>\r\n</div>");
         }
         #pragma warning restore 1998
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<BurialViewModel> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<BurialViewModel> Html { get; private set; } = default!;
+        #nullable disable
         [Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElementAttribute("vc:sex")]
         public class __Generated__SexViewComponentTagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
         {
@@ -201,9 +213,14 @@ __backend_Infrastructure_PaginationTagHelper.PageClassesEnabled = true;
             public override async global::System.Threading.Tasks.Task ProcessAsync(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext __context, Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput __output)
             {
                 (__helper as global::Microsoft.AspNetCore.Mvc.ViewFeatures.IViewContextAware)?.Contextualize(ViewContext);
-                var __helperContent = await __helper.InvokeAsync("Sex", new {  });
+                var __helperContent = await __helper.InvokeAsync("Sex", ProcessInvokeAsyncArgs(__context));
                 __output.TagName = null;
                 __output.Content.SetHtmlContent(__helperContent);
+            }
+            private Dictionary<string, object> ProcessInvokeAsyncArgs(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext __context)
+            {
+                Dictionary<string, object> args = new Dictionary<string, object>();
+                return args;
             }
         }
     }
