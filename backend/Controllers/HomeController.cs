@@ -79,7 +79,7 @@ namespace backend.Controllers
             {
                 _mummyContext.Add(ar);
                 _mummyContext.SaveChanges();
-                return View("Summary");
+                return RedirectToAction("Summary");
             }
             else //Stay in view if not a valid modelstate.
             {
