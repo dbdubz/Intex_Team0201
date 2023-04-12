@@ -61,19 +61,19 @@ namespace backend.Controllers
             if (!string.IsNullOrWhiteSpace(burialdepth)) { burial_main = burial_main.Where(burial => burial.BurialDepth == burialdepth); }
             if (!string.IsNullOrWhiteSpace(haircolor)) { burial_main = burial_main.Where(burial => burial.Haircolor == haircolor); }
 
-            IQueryable<Textile> textile = _mummyContext.Textile.AsQueryable();
-            IQueryable<ColorTextile> textile_color_intermediary = _mummyContext.ColorTextile.AsQueryable();
-            IQueryable<Color> color = _mummyContext.Color.AsQueryable();
-            IQueryable<BurialmainTextile> burial_main_textile_intermediary = _mummyContext.BurialmainTextile.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(textilecolor)) { 
+            IQueryable<Textile> textile = _mummyContext.Textile;
+            IQueryable<ColorTextile> textile_color_intermediary = _mummyContext.ColorTextile;
+            IQueryable<Color> color = _mummyContext.Color;
+            IQueryable<BurialmainTextile> burial_main_textile_intermediary = _mummyContext.BurialmainTextile;
+            if (!string.IsNullOrWhiteSpace(textilecolor)) {
                 //color = color.Where(c => c.Value == textilecolor).Distinct().ToList();
-                textile_color_intermediary = textile_color_intermediary.Where(tc => tc.MainColorid == color.First().Colorid);
-                var tc_list = textile_color_intermediary.Select(tc => tc.MainTextileid).ToList();
-                textile = textile.Where(t => tc_list.Contains(t.Id));
-                var t_list = textile.Select(t => t.Burialnumber).ToList();
+                //textile_color_intermediary = textile_color_intermediary.Where(tc => tc.MainColorid == color.First().Colorid);
+                //var tc_list = textile_color_intermediary.Select(tc => tc.MainTextileid).ToList();
+                //textile = textile.Where(t => tc_list.Contains(t.Id));
+                //var t_list = textile.Select(t => t.Burialnumber).ToList();
                 //textile = textile.Where(t => textile_color_intermediary.Select(tc => tc.MainTextileid).Distinct().ToList().Contains(t.Id));
                 //burial_main_textile_intermediary = burial_main_textile_intermediary.Where(bt => bt.MainTextileid == textile.)
-                burial_main = burial_main.Where(burial => t_list.Contains(burial.Burialnumber));
+                //burial_main = burial_main.Where(burial => t_list.Contains(burial.Burialnumber));
             }
 
             IQueryable<TextilefunctionTextile> textile_function_intermediary = _mummyContext.TextilefunctionTextile.AsQueryable();
