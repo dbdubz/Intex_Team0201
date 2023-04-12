@@ -38,7 +38,6 @@
             <li>Clusternumber: @Model.Clusternumber</li>
             <li>Shaftnumber: @Model.Shaftnumber</li>
             <li>Textile Information:</li>
-            <li>@ViewBag.Textile.locale</li>
             <a asp-controller="Home" asp-action="Edit" asp-route-burialid="@Model.Id" class="btn-toolbar">Edit</a>
             <a asp-controller="Home" asp-action="Delete" asp-route-burialid="@Model.Id" class="btn-toolbar">Delete</a>
         </ul>
