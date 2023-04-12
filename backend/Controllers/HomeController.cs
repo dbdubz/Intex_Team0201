@@ -54,21 +54,26 @@ namespace backend.Controllers
             int pageSize = 25;
 
             IQueryable<Burialmain> burial_main = _mummyContext.Burialmain.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(sex)) { burial_main = sex != "x" ? burial_main.Where(burial => burial.Sex == sex) : burial_main.Where(burial => burial.Sex == null); }
+            if (!string.IsNullOrWhiteSpace(sex)) { burial_main = sex != "empty" ? burial_main.Where(burial => burial.Sex == sex) : burial_main.Where(burial => burial.Sex == null); }
             if (!string.IsNullOrWhiteSpace(age)) { burial_main = burial_main.Where(burial => burial.Ageatdeath == age); }
             if (!string.IsNullOrWhiteSpace(id)) { burial_main = burial_main.Where(burial => Convert.ToString(burial.Id) == id); }
             if (!string.IsNullOrWhiteSpace(headdirection)) { burial_main = burial_main.Where(burial => burial.Headdirection == headdirection); }
             if (!string.IsNullOrWhiteSpace(burialdepth)) { burial_main = burial_main.Where(burial => burial.BurialDepth == burialdepth); }
             if (!string.IsNullOrWhiteSpace(haircolor)) { burial_main = burial_main.Where(burial => burial.Haircolor == haircolor); }
 
-            IQueryable<Textile> textile = _mummyContext.Textile.AsQueryable();
-            IQueryable<ColorTextile> textile_color_intermediary = _mummyContext.ColorTextile.AsQueryable();
-            IQueryable<Color> color = _mummyContext.Color.AsQueryable();
-            if (!string.IsNullOrWhiteSpace(textilecolor)) { 
-                color = color.Where(c => c.Value == textilecolor).Distinct();
-                textile_color_intermediary = textile_color_intermediary.Where(tc => tc.MainColorid == color.First().Colorid);
-                textile = textile.Where(t => textile_color_intermediary.Select(tc => tc.MainTextileid).Distinct().ToList().Contains(t.Id));
-                burial_main = burial_main.Where(burial => textile.Select(t => t.Burialnumber).Distinct().ToList().Contains(burial.Burialnumber));
+            IQueryable<Textile> textile = _mummyContext.Textile;
+            IQueryable<ColorTextile> textile_color_intermediary = _mummyContext.ColorTextile;
+            IQueryable<Color> color = _mummyContext.Color;
+            IQueryable<BurialmainTextile> burial_main_textile_intermediary = _mummyContext.BurialmainTextile;
+            if (!string.IsNullOrWhiteSpace(textilecolor)) {
+                //color = color.Where(c => c.Value == textilecolor).Distinct().ToList();
+                //textile_color_intermediary = textile_color_intermediary.Where(tc => tc.MainColorid == color.First().Colorid);
+                //var tc_list = textile_color_intermediary.Select(tc => tc.MainTextileid).ToList();
+                //textile = textile.Where(t => tc_list.Contains(t.Id));
+                //var t_list = textile.Select(t => t.Burialnumber).ToList();
+                //textile = textile.Where(t => textile_color_intermediary.Select(tc => tc.MainTextileid).Distinct().ToList().Contains(t.Id));
+                //burial_main_textile_intermediary = burial_main_textile_intermediary.Where(bt => bt.MainTextileid == textile.)
+                //burial_main = burial_main.Where(burial => t_list.Contains(burial.Burialnumber));
             }
 
             IQueryable<TextilefunctionTextile> textile_function_intermediary = _mummyContext.TextilefunctionTextile.AsQueryable();
@@ -100,197 +105,6 @@ namespace backend.Controllers
                 burial_main = burial_main.Where(burial => bodyanalysis_intermediary.Select(bi => bi.MainBurialmainid).Distinct().ToList().Contains(burial.Id));
             }
 
-            /*
-            //need to add a new query to accomodate the Color table for textilecolor, the Function table for textile function, and the Structure table for textilestructure
-
-            // __________ FILTER BURIAL BY ATTRIBUTES __________
-
-            // ~~~~~ id ~~~~~
-            var id_filter = (id != null) ? _mummyContext.Burialmain.Where(burial => burial.Id == Convert.ToInt32(id)) : _mummyContext.Burialmain;
-            
-            // ~~~~~ sex ~~~~~
-            var sex_filter = (sex != null) ? _mummyContext.Burialmain.Where(burial => burial.Sex == sex) : _mummyContext.Burialmain;
-            
-            // ~~~~~ head direction ~~~~~
-            var head_direction_filter = (headdirection != null) ? _mummyContext.Burialmain.Where(burial => burial.Headdirection == headdirection) : _mummyContext.Burialmain;
-            
-            // ~~~~~ burial depth ~~~~~
-            var burial_depth_filter = (burialdepth != null) ? _mummyContext.Burialmain.Where(burial => burial.BurialDepth == burialdepth) : _mummyContext.Burialmain;
-            
-            // ~~~~~ hair color ~~~~~
-            var hair_color_filter = (haircolor != null) ? _mummyContext.Burialmain.Where(burial => burial.Haircolor == haircolor) : _mummyContext.Burialmain;
-            
-            // ~~~~~ age ~~~~~
-            var age_filter = (age != null) ? _mummyContext.Burialmain.Where(burial => burial.Ageatdeath == age) : _mummyContext.Burialmain;
-
-
-            // --------------------------------------------------------------------------------
-
-
-            // __________ FILTER TABLES __________
-
-            // ~~~~~ color ~~~~~
-            var color_table = (textilecolor != null) ? _mummyContext.Color.Where(c => c.Value == textilecolor) : _mummyContext.Color;
-            
-            // ~~~~~ textile function ~~~~~
-            var textile_function_table = (function != null) ? _mummyContext.Textilefunction.Where(tf => tf.Value == function) : _mummyContext.Textilefunction;
-            
-            // ~~~~~ structure ~~~~~
-            var structure_table = (structure != null) ? _mummyContext.Structure.Where(s => s.Value == structure) : _mummyContext.Structure;
-
-
-            // --------------------------------------------------------------------------------
-
-
-            // __________ GET MAIN TABLES __________
-
-
-            // ~~~~~ Burial Main ~~~~~
-            var burials_main_table = _mummyContext.Burialmain;
-
-            // ~~~~~ Textile ~~~~~
-            var textile_table = _mummyContext.Textile;
-
-
-            // --------------------------------------------------------------------------------
-
-
-            // __________ GET INTERMEDIARY TABLES __________
-
-            // ~~~~~ Color/Textile ~~~~~
-            var color_textile_intermediary = _mummyContext.ColorTextile;
-            
-            // ~~~~~ Textile/Function ~~~~~
-            var textile_function_intermediary = _mummyContext.TextilefunctionTextile;
-
-            // ~~~~~ Structure/Textile ~~~~~
-            var structure_textile_intermediary = _mummyContext.StructureTextile;
-
-            // ~~~~~ BurialMain/Textile ~~~~~
-            var burial_main_textile_intermediary = _mummyContext.BurialmainTextile;
-
-            // FILTER BY SEX
-            IQueryable<Burialmain> burial_sex_filtered =
-                from b in burials_main_table
-                from s in sex_filter
-                where s.Id == b.Id
-                //return burialmain
-                select new Burialmain
-                {
-                    Id = b.Id,
-                    Ageatdeath = b.Ageatdeath,
-                    Sex = b.Sex,
-                    Text = b.Text,
-                    Headdirection = b.Headdirection,
-                    Area = b.Area,
-                    Burialnumber = b.Burialnumber,
-                    Hair = b.Haircolor
-                };
-
-            // FILTER BY Age
-            IQueryable<Burialmain> burial_age_filtered =
-                from b in burials_main_table
-                from a in age_filter
-                where a.Id == b.Id
-                //return burialmain
-                select new Burialmain
-                {
-                    Id = b.Id,
-                    Ageatdeath = b.Ageatdeath,
-                    Sex = b.Sex,
-                    Text = b.Text,
-                    Headdirection = b.Headdirection,
-                    Area = b.Area,
-                    Burialnumber = b.Burialnumber,
-                    Hair = b.Haircolor
-                };
-
-            // SEX_AGE
-            IQueryable<Burialmain> sex_age_filtered =
-                from s in burial_sex_filtered
-                from a in burial_age_filtered
-                where a.Id == s.Id
-                //return burialmain
-                select new Burialmain
-                {
-                    Id = s.Id,
-                    Ageatdeath = s.Ageatdeath,
-                    Sex = s.Sex,
-                    Text = s.Text,
-                    Headdirection = s.Headdirection,
-                    Area = s.Area,
-                    Burialnumber = s.Burialnumber,
-                    Hair = s.Haircolor
-                };
-
-            // Filter by hair color
-            IQueryable<Burialmain> hair_color_filtered =
-                from sa in sex_age_filtered
-                from hc in hair_color_filter
-                where hc.Id == sa.Id
-                select new Burialmain
-                {
-                    Id = sa.Id,
-                    Ageatdeath = sa.Ageatdeath,
-                    Sex = sa.Sex,
-                    Text = sa.Text,
-                    Headdirection = sa.Headdirection,
-                    Area = sa.Area,
-                    Burialnumber = sa.Burialnumber,
-                    Hair = sa.Haircolor
-                };
-
-            //Filter by burial depth
-            IQueryable<Burialmain> burial_depth_filtered =
-                from hc in hair_color_filtered
-                from bd in burial_depth_filter
-                where bd.Id == hc.Id
-                select new Burialmain
-                {
-                    Id = hc.Id,
-                    Ageatdeath = hc.Ageatdeath,
-                    Sex = hc.Sex,
-                    Text = hc.Text,
-                    Headdirection = hc.Headdirection,
-                    Area = hc.Area,
-                    Burialnumber = hc.Burialnumber,
-                    Hair = hc.Haircolor
-                };
-
-            IQueryable<Burialmain> head_direction_filtered =
-                from bd in burial_depth_filtered
-                from hd in head_direction_filter
-                where hd.Id == bd.Id
-                select new Burialmain
-                {
-                    Id = bd.Id,
-                    Ageatdeath = bd.Ageatdeath,
-                    Sex = bd.Sex,
-                    Text = bd.Text,
-                    Headdirection = bd.Headdirection,
-                    Area = bd.Area,
-                    Burialnumber = bd.Burialnumber,
-                    Hair = bd.Haircolor
-                };
-
-            IQueryable<Burialmain> id_filtered =
-                from hd in head_direction_filtered
-                from i in id_filter
-                where i.Id == hd.Id
-                select new Burialmain
-                {
-                    Id = hd.Id,
-                    Ageatdeath = hd.Ageatdeath,
-                    Sex = hd.Sex,
-                    Text = hd.Text,
-                    Headdirection = hd.Headdirection,
-                    Area = hd.Area,
-                    Burialnumber = hd.Burialnumber,
-                    Hair = hd.Haircolor
-                };
-            */
-
-
             var x = new BurialViewModel
             {
                 Burialmains = burial_main
@@ -317,23 +131,19 @@ namespace backend.Controllers
             ViewBag.SelectedBurialId = id;
             ViewBag.SelectedTextileFunction = function;
             ViewBag.SelectedHairColor = haircolor;
+            ViewBag.SelectedEstimateStature = estimatedstature;
+            ViewBag.SelectedTextileColor = textilecolor;
 
-            IQueryable<Burialmain> burials = burial_main;
-            IQueryable<Textile> textiles = textile;
-            IQueryable<Textilefunction> textilefunctions = textile_function;
-            IQueryable<TextilefunctionTextile> tf_merged = textile_function_intermediary;
-            IQueryable<Color> colors = _mummyContext.Color.Distinct();
 
-            ViewBag.Sex = burial_main.Select(burial => burial.Sex).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.BurialDepth = burial_main.Select(burial => burial.BurialDepth).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.AgeAtDeath = burial_main.Select(burial => burial.Ageatdeath).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.HeadDirection = burial_main.Select(burial => burial.Headdirection).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.BurialId = burial_main.Select(burial => burial.Burialid).Distinct().OrderBy(burial => burial).ToList();
-            ViewBag.HairColor = burial_main.Select(burial => burial.Haircolor).Distinct().OrderBy(burial => burial).ToList();
-            //ViewBag.TextileFunction = textilefunctions.Where(tf => textile_function_intermediary.Select(tfi => tfi.MainTextilefunctionid).ToList().Contains(tf.Id)).OrderBy(tf => tf).ToList();
-            //ViewBag.TextileColor = color.Where(c => textile_color_intermediary.Select(tc => tc.MainColorid).Distinct().ToList().Contains(c.Id)).OrderBy(c => c).ToList();
-            //ViewBag.TextileStructure = structure_list.Where(s => textile_structure_intermediary.Select(ts => ts.MainStructureid).Distinct().ToList().Contains(s.Id)).OrderBy(s => s).ToList();
-            //ViewBag.EstimateStature = bodyanalysis.Where(b => bodyanalysis_intermediary.Select(bi => bi.MainBodyanalysischartid).ToList().Contains(b.Id)).OrderBy(b => b).ToList();
+            ViewBag.Sex = _mummyContext.Burialmain.Select(burial => burial.Sex).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.BurialDepth = _mummyContext.Burialmain.Select(burial => burial.BurialDepth).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.AgeAtDeath = _mummyContext.Burialmain.Select(burial => burial.Ageatdeath).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.HeadDirection = _mummyContext.Burialmain.Select(burial => burial.Headdirection).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.BurialId = _mummyContext.Burialmain.Select(burial => burial.Burialid).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.HairColor = _mummyContext.Burialmain.Select(burial => burial.Haircolor).Distinct().OrderBy(burial => burial).ToList();
+            ViewBag.TextileFunction = _mummyContext.Textilefunction.Select(function => function.Value).Distinct().OrderBy(function => function).ToList();
+            ViewBag.TextileColor = _mummyContext.Color.Select(tc => tc.Value).Distinct().OrderBy(tc => tc).ToList();
+            ViewBag.EstimateStature = _mummyContext.Bodyanalysischart.Select(bas => bas.Estimatestature).Distinct().ToList();
 
             return View(x);
         }
