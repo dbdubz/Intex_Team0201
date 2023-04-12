@@ -16,7 +16,7 @@ namespace backend.Models
         public string Headdirection { get; set; }
         public string Sex { get; set; }
         public string Northsouth { get; set; }
-        public string Depth { get; set; }
+        public string BurialDepth { get; set; }
         public string Eastwest { get; set; }
         public string Adultsubadult { get; set; }
         public string Facebundles { get; set; }
@@ -34,7 +34,7 @@ namespace backend.Models
 
         public long? Burialid { get; set; }
 
-        public string Length { get; set; }
+        public string BurialLength { get; set; }
         public string Burialnumber { get; set; }
         public string Dataexpertinitials { get; set; }
         public string Westtofeet { get; set; }

@@ -24,7 +24,7 @@ namespace backend.Components
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedType = RouteData?.Values["Sex"];
-            //Pulling out the different types of projects and sending it back to the view.
+            //Pulling out the different genders and sending it back to the view.
             var types = _mummyContext.Burialmain
                 .Select(x => x.Sex)
                 .Where(x => x == "M" || x == "F" || x == " ")

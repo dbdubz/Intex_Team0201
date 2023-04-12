@@ -6,12 +6,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\AgeAtDepthViewComponent.cs" />
+    <Compile Remove="Components\BurialDepthViewController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Components\NewFile.txt" />
     <None Remove="Models\ViewModels\NewFile.txt" />
     <None Remove="Views\Home\NewFile.txt" />
+    <None Remove="Views\Shared\Components\AgeAtDeath\NewFile.txt" />
+    <None Remove="Views\Shared\Components\BurialDepth\NewFile.txt" />
+    <None Remove="Views\Shared\Components\HairColor\NewFile.txt" />
+    <None Remove="Views\Shared\Components\HeadDirection\NewFile.txt" />
+    <None Remove="Views\Shared\Components\TextileColor\NewFile.txt" />
+    <None Remove="Views\Shared\Components\TextileFunction\NewFile.txt" />
     <None Remove="Views\Shared\NewFile.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.60.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.31" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.32" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.32" />
@@ -23,6 +37,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+    <Folder Include="wwwroot\template\" />
   </ItemGroup>
 
 </Project>

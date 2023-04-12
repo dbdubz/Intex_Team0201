@@ -427,8 +427,8 @@ namespace backend.Models
 
                 entity.Property(e => e.Dateofexcavation).HasColumnName("dateofexcavation");
 
-                entity.Property(e => e.Depth)
-                    .HasColumnName("depth")
+                entity.Property(e => e.BurialDepth)
+                    .HasColumnName("burialdepth")
                     .HasMaxLength(200);
 
                 entity.Property(e => e.Eastwest)
@@ -467,8 +467,8 @@ namespace backend.Models
                     .HasColumnName("headdirection")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Length)
-                    .HasColumnName("length")
+                entity.Property(e => e.BurialLength)
+                    .HasColumnName("buriallength")
                     .HasMaxLength(200);
 
                 entity.Property(e => e.Northsouth)

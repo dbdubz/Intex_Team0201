@@ -2,14 +2,292 @@
 }
 
 @model BurialViewModel
-<div className="container">
-    <div className="col-4">
-        <div className="border">
-            <vc:Sex></vc:Sex>
-        </div>
-    </div>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" 
+          integrity="sha512-ZYg+hQvLlM0W9C3P6vTpes5LmJ66G2EsroxDNzwD6qiulckldb29eD9I672HL2X+LH5nRhY1sQqZLJGB+aUUPg==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <div className="col">
+     
+<div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            <form asp-action="Summary" method="get">
+                <!--<div class="Form-group">
+                    <label>Filters:</label> <br/>
+                    <vc:Sex></vc:Sex> <br/>
+                    <vc:head-direction></vc:head-direction> <br/>
+                    <vc:burial-depth></vc:burial-depth> <br/>
+                    <vc:hair-color></vc:hair-color> <br/>
+                    <vc:age-at-death></vc:age-at-death> <br/>
+                    <vc:textile-color></vc:textile-color> <br/>
+                    <vc:textile-function></vc:textile-function> <br/>
+                    <br />
+                </div>-->
+                <div class="form-group">
+                    <label for="id">Burial Id</label>
+                    <select name="id">
+                        @if (ViewBag.SelectedBurialId == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.BurialId)
+                        {
+                            if (x == null && ViewBag.SelectedBurialId == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedBurialId)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sex">Sex</label>
+                    <select name="sex" id="sex">
+                        @if (ViewBag.SelectedSex == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.Sex)
+                        {
+                            if (x == null && ViewBag.SelectedSex == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedSex)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="headdirection">Head Direction</label>
+                    <select name="headdirection">
+                        @if (ViewBag.SelectedHeadDirection == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.HeadDirection)
+                        {
+                            if (x == null && ViewBag.SelectedHeadDirection == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedHeadDirection)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="burialdepth">Burial Depth</label>
+                    <select name="burialdepth">
+                        @if (ViewBag.SelectedBurialDepth == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.BurialDepth)
+                        {
+                            if (x == null && ViewBag.SelectedBurialdepth == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedBurialDepth)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="haircolor">Hair Color</label>
+                    <select name="haircolor">
+                        @if (ViewBag.SelectedHairColor == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.HairColor)
+                        {
+                            if (x == null && ViewBag.SelectedHairColor == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedHairColor)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="age">Age at Death</label>
+                    <select name="age">
+                        @if (ViewBag.SelectedAgeAtDeath == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.AgeAtDeath)
+                        {
+                            if (x == null && ViewBag.SelectedAgeAtDeath == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedAgeAtDeath)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="textilefunction">Textile Function</label>
+                    <select name="textilefunction">
+                        @if (ViewBag.SelectedTextileFunction == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.TextileFunction)
+                        {
+                            if (x == null && ViewBag.SelectedTextileFunction == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedTextileFunction)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="textilecolor">Textile Color</label>
+                    <select name="textilecolor">
+                        @if (ViewBag.SelectedTextileColor == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.TextileColor)
+                        {
+                            if (x == null && ViewBag.SelectedTextileColor == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedTextileFunction)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="estimatestature">Estimate Stature</label>
+                    <select name="estimatestature">
+                        @if (ViewBag.SelectedEstimateStature == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.EstimateStature)
+                        {
+                            if (x == null && ViewBag.SelectedEstimateStature == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x == null || x.Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x == ViewBag.SelectedEstimateStature)
+                            {
+                                <option value="@x" selected>@x</option>
+                            }
+                            else
+                            {
+                                <option value="@x">@x</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success btn-sm" id="filter" name="filter">Search</button>
+            </form>
+        </div>
+
+    <div class="col">
     @foreach(Burialmain b in Model.Burialmains)
     {
         <partial name="BurialSummary" model="b" />

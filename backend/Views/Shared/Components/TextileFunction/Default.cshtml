@@ -1,0 +1,14 @@
+﻿@{
+}
+
+@model IEnumerable<string>
+<div class="d-grid gap-2">
+    <h6>Textile Function</h6>
+    <select>
+        @foreach (string t in Model)
+        {
+            <option asp-route-TextileFunction="@t">@t</option>
+        }
+    </select>
+
+</div>

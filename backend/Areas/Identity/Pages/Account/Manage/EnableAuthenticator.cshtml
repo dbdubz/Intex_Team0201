@@ -7,7 +7,9 @@
 
 <partial name="_StatusMessage" for="StatusMessage" />
 <h4>@ViewData["Title"]</h4>
+
 <div>
+    <h1>You must have MFA as an authenticated user</h1>
     <p>To use an authenticator app go through the following steps:</p>
     <ol class="list">
         <li>
@@ -50,4 +52,13 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/qrcode/qrcode.min.js"></script>
+    <script type="text/javascript">
+         new QRCode(document.getElementById("qrCode"),
+         {
+             text: "@Html.Raw(Model.AuthenticatorUri)",
+             width: 200,
+             height: 200
+         });
+    </script>
 }

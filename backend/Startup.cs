@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Google.Apis.Auth;
 
 namespace backend
 {
@@ -50,16 +51,24 @@ namespace backend
             services.AddDbContext<mummyContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyConnection")));
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    IConfigurationSection googleAuthNSection =
+                        Configuration.GetSection("Authentication:Google");
+
+                    options.ClientId = googleAuthNSection["ClientId"];
+                    options.ClientSecret = googleAuthNSection["ClientSecret"];
+                });
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 12;
                 options.Password.RequiredUniqueChars = 5;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
                 options.User.RequireUniqueEmail = true;
             });
-                
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
