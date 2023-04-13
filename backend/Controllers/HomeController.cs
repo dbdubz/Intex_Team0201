@@ -31,25 +31,6 @@ namespace backend.Controllers
         {
             ViewData["ViewName"] = "Index";
             return View();
-            /*
-            if (User.Identity.IsAuthenticated)
-            {
-                var user = _userManager.FindByNameAsync(User.Identity.Name);
-                if (User.IsInRole("authenticated") && !user.Result.TwoFactorEnabled)
-                {
-                    return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
-                }
-                else
-                {
-                    ViewData["ViewName"] = "Index";
-                    return View();
-                }
-            }
-            else
-            {
-                ViewData["ViewName"] = "Index";
-                return View();
-            }*/
         }
 
         public IActionResult Details(long burialid)
