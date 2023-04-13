@@ -28,7 +28,10 @@ namespace backend.Controllers
         }
 
         public IActionResult Index()
-        { 
+        {
+            ViewData["ViewName"] = "Index";
+            return View();
+            /*
             if (User.Identity.IsAuthenticated)
             {
                 var user = _userManager.FindByNameAsync(User.Identity.Name);
@@ -46,7 +49,7 @@ namespace backend.Controllers
             {
                 ViewData["ViewName"] = "Index";
                 return View();
-            }
+            }*/
         }
 
         public IActionResult Details(long burialid)
@@ -285,6 +288,11 @@ namespace backend.Controllers
         }
 
         public IActionResult Unsupervised()
+        {
+            return View();
+        }
+
+        public IActionResult Unsupervised2()
         {
             return View();
         }
