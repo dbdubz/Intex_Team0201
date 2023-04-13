@@ -8,27 +8,33 @@
 <h1>Roles</h1>
 
 <p>Add a new <a asp-controller="Home" asp-action="CreateRole">role</a>.</p>
-<table class="table-stribed table-bordered">
+<table class="table-stribed table-bordered p-3">
     <thead>
         <tr>
-            <td>Id</td>
             <td>Name</td>
+            <td>Users In Role</td>
+            <td>Role Description</td>
+            <td></td>
         </tr>
     </thead>
     <tbody>
         @foreach (var role in Model)
         {
-            <tr>
-                <td>@role.Name</td>
-                @if (role.Name == "authenticated")
-                {
-                    <td>users with administrative privileges</td>
-                }
-                else
-                {
-                    <td>users without administrative privileges</td>
-                }
-            </tr>
+        <tr>
+            <td>@role.Name</td>
+            @if (role.Name == "authenticated")
+            {
+                <td>@ViewBag.Authenticated</td>
+                <td>users with administrative privileges</td>
+                <td><a asp-controller="Home" asp-action="EditRole" asp-route-rolename="@role.Name">edit</a></td>
+            }
+            else
+            {
+                <td>@ViewBag.NonAuthenticated</td>
+                <td>users without administrative privileges</td>
+                <td><a asp-controller="Home" asp-action="EditRole" asp-route-rolename="@role.Name">edit</a></td>
+            }
+        </tr>
         }
     </tbody>
 </table>
