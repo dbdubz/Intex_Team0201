@@ -268,7 +268,7 @@ namespace backend.Controllers
             return View(x);
         }
 
-        public IActionResult Supervised()
+        public IActionResult Supervised() //All these routes going to fun pages
         {
             return View();
         }
@@ -283,7 +283,7 @@ namespace backend.Controllers
             return View();
         }
 
-        [Authorize(Roles="authenticated")]
+        [Authorize(Roles="authenticated")] //These are for Authorized users only.
         public IActionResult CreateRole()
         {
             if (User.Identity.IsAuthenticated)
@@ -400,7 +400,7 @@ namespace backend.Controllers
             }
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy() //Privacy page
         {
             return View();
         }

@@ -19,6 +19,7 @@ namespace Onnx2.Controllers
         {
             _session = session;
         }
+        //Here's the API wit hthe ONNX file. It takes in the input from the supervised section.
 
         [HttpPost]
         public ActionResult Score(BurialData data)
