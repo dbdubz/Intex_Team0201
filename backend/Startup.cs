@@ -51,15 +51,6 @@ namespace backend
             services.AddDbContext<mummyContext>(options =>
                 options.UseNpgsql(
                     Configuration.GetConnectionString("MummyConnection")));
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    IConfigurationSection googleAuthNSection =
-                        Configuration.GetSection("Authentication:Google");
-
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
-                });
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequiredLength = 12;

@@ -44,7 +44,7 @@ namespace backend.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        public IEnumerable<IdentityRole> Roles { get; set; }
+        public IList<IdentityRole> Roles { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
@@ -60,10 +60,6 @@ namespace backend.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [Display(Name = "Role")]
-            public string Role { get; set; }
-
-            [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 12)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
@@ -77,7 +73,6 @@ namespace backend.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            Roles = _roleManager.Roles.ToList();
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -95,7 +90,7 @@ namespace backend.Areas.Identity.Pages.Account
                 {
                     user.EmailConfirmed = true;
 
-                    if (Input.Role == "authenticated")
+                    if (Input.UserName.EndsWith("admin"))
                     {
                         user.TwoFactorEnabled = false;
                         await _userManager.AddToRoleAsync(user, "authenticated");
@@ -105,6 +100,7 @@ namespace backend.Areas.Identity.Pages.Account
                         user.TwoFactorEnabled = false;
                         await _userManager.AddToRoleAsync(user, "non-authenticated");
                     }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
