@@ -591,3 +591,11 @@ body {
     object-fit: cover;
     object-position: center;
 }
+
+.background-colors-applied {
+    background-color: #F9DEC9;
+}
+
+.sel-width {
+    width: 100px;
+}

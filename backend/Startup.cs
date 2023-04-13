@@ -73,6 +73,7 @@ namespace backend
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+                app.UseHsts();
             }
             else
             {

@@ -22,9 +22,10 @@
         <vc:textile-function></vc:textile-function> <br/>
         <br />
     </div>-->
+    
                 <div class="form-group">
                     <label for="id">Burial Id</label>
-                    <select name="id">
+                    <select name="id" class="sel-width">
                         @if (ViewBag.SelectedBurialId == null)
                         {
                             <option value="" selected></option>
@@ -53,7 +54,7 @@
                 </div>
                 <div class="form-group">
                     <label for="sex">Sex</label>
-                    <select name="sex" id="sex">
+                    <select name="sex" id="sex" class="sel-width">
                         @if (ViewBag.SelectedSex == null)
                         {
                             <option value="" selected></option>
@@ -82,7 +83,7 @@
                 </div>
                 <div class="form-group">
                     <label for="headdirection">Head Direction</label>
-                    <select name="headdirection">
+                    <select name="headdirection" class="sel-width">
                         @if (ViewBag.SelectedHeadDirection == null)
                         {
                             <option value="" selected></option>
@@ -111,7 +112,7 @@
                 </div>
                 <div class="form-group">
                     <label for="burialdepth">Burial Depth</label>
-                    <select name="burialdepth">
+                    <select name="burialdepth" class="sel-width">
                         @if (ViewBag.SelectedBurialDepth == null)
                         {
                             <option value="" selected></option>
@@ -140,7 +141,7 @@
                 </div>
                 <div class="form-group">
                     <label for="haircolor">Hair Color</label>
-                    <select name="haircolor">
+                    <select name="haircolor" class="sel-width">
                         @if (ViewBag.SelectedHairColor == null)
                         {
                             <option value="" selected></option>
@@ -169,7 +170,7 @@
                 </div>
                 <div class="form-group">
                     <label for="age">Age at Death</label>
-                    <select name="age">
+                    <select name="age" class="sel-width">
                         @if (ViewBag.SelectedAgeAtDeath == null)
                         {
                             <option value="" selected></option>
@@ -199,7 +200,7 @@
 
                 <div class="form-group">
                     <label for="textilefunction">Textile Function</label>
-                    <select name="textilefunction">
+                    <select name="textilefunction" class="sel-width">
                         @if (ViewBag.SelectedTextileFunction == null)
                         {
                             <option value="" selected></option>
@@ -228,7 +229,7 @@
                 </div>
                 <div class="form-group">
                     <label for="textilecolor">Textile Color</label>
-                    <select name="textilecolor">
+                    <select name="textilecolor" class="sel-width">
                         @if (ViewBag.SelectedTextileColor == null)
                         {
                             <option value="" selected></option>
@@ -257,7 +258,7 @@
                 </div>
                 <div class="form-group">
                     <label for="textilestructure">Textile Structure</label>
-                    <select name="textilestructure">
+                    <select name="textilestructure" class="sel-width">
                         @if (ViewBag.SelectedTextileStructure == null)
                         {
                             <option value="" selected></option>
@@ -292,7 +293,8 @@
             
             </div>
             <div class="border border-dark w-100 p-3">
-                <h4>Key:</h4><br />
+                <h4>Key:</h4>
+                Hair Color:<br />
                 A: Brown - Red<br />
                 B: Brown - Dark Brown - Light Brown<br />
                 D: Blonde<br />
