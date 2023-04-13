@@ -4,12 +4,20 @@
 @model Burialmain
 
 
-<div class="card card-outline-primary m-1 p-1">
-    <div class="bg-light p-1">
-        <h4>ID: @Model.Id</h4>
+<div class="card card-outline-primary m-1 p-0">
+    <div class="bg-secondary-light p-1 container">
+        <div class="float-left">
+            <h4 class="font-weight-bold">ID: @Model.Id</h4>
+        </div>
+        <div class="float-right">
+            <button class="btn bg-secondary-light border-0 text-white" id="more" style="border: none;"
+                    onclick="{ $('#info').removeAttr('hidden'); $('#more').attr('hidden', true); $('#less').removeAttr('hidden'); }">see more</button>
+            <button class="btn" id="less"
+                    onclick="{ $('#info').attr('hidden', true); $('#more').removeAttr('hidden'); $('#less').attr('hidden', true); }" hidden>see less</button>
+        </div>
     </div>
 
-    <ul>
+    <ul id="info" hidden>
         <li>AgeAtDeath: @Model.Ageatdeath</li>
         <li>Sex: @Model.Sex</li>
         <li>Text: @Model.Text</li>
@@ -18,8 +26,4 @@
         <li>Burial Number: @Model.Burialnumber</li>
         <li>Hair Color: @Model.Haircolor</li>
     </ul>
-
-    <p>
-        <h3>View More Details here: <a asp-controller="Home" asp-action="Details" asp-route-burialid="@Model.Id" class="btn-toolbar">Details</a></h3>
-    </p>
 </div>

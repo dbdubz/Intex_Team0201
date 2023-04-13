@@ -69,9 +69,14 @@ namespace backend.Controllers
 
         [HttpGet]
         [Authorize(Roles = "authenticated")]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var user = await _userManager.GetUserAsync(User);
+            if (!user.TwoFactorEnabled)
+            {
+                return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+            }
+            return View(new Burialmain());
         }
 
         [HttpPost]
