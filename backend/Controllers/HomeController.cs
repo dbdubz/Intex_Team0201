@@ -324,13 +324,15 @@ namespace backend.Controllers
         public IActionResult ViewRoles()
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name);
+            var roles = _roleManager.Roles;
+            List<IdentityUser> users = _userManager.Users.ToList();
             if (!user.Result.TwoFactorEnabled)
             {
                 return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
             }
             else
             {
-                var roles = _roleManager.Roles.ToList();
+                //var roles = _roleManager.Roles.ToList();
                 return View(roles);
             }
         }

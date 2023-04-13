@@ -86,15 +86,15 @@ namespace backend.Areas.Identity.Pages.Account
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    var user = await _userManager.GetUserAsync(User);
-                    if (user.TwoFactorEnabled)
-                    {
+                    //var user = await _userManager.GetUserAsync(User);
+                    //if (user.TwoFactorEnabled)
+                    //{
                         return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                    }
-                    else
-                    {
-                        return RedirectToPage("./Manage/EnableAuthenticator", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                    }
+                    //}
+                    //else
+                    //{
+                    //    return RedirectToPage("./Manage/EnableAuthenticator", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    //}
                 }
                 if (result.IsLockedOut)
                 {
