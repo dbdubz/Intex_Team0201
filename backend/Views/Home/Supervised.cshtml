@@ -1,136 +1,196 @@
 ﻿@{
     ViewData["Title"] = "Supervised Analysis";
 }
-
+<h2>@ViewData["Title"]</h2>
 <div>
-        <h4 id="predictionResult" class="predictionResult" ></h4>
-
-
-    <h4 id="predictionResult" class="predictionResult" ></h4>
-    <form class="form-group">
+    <h4>Predict head direction</h4><br>
+    <div class="form-group">
         <h3>Burial Location</h3>
-        <label for="squarenorthsouth">Square North/South</label>
-        <input id="squarenorthsouth" type="number" value="0">
+        <div class="row">
+        <div class="col-2"><label for="squarenorthsouth">Square North/South</label></div>
+        <div class="col"><input id="squarenorthsouth" type="number" value="0"></div>
         <br>
+        </div>
 
-        <label for="northsouth">North/South</label>
-        <select id="northsouth">
+        <div class="row">
+        <div class="col-2""><label for="northsouth">North/South</label></div>
+        <div class="col"><select id="northsouth">
             <option value="N">N</option>
             <option value="S">S</option>
-        </select>
+        </select></div>
         <br>
+        </div>
 
-        <label for="squareeastwest">Square East/West</label>
-        <input id="squareeastwest" type="number" value="0">
-        <br>
+        <div class="row">
+        <div class="col-2"><label for="squareeastwest">Square East/West</label></div>
+        <div class="col"><input id="squareeastwest" type="number" value="0"></div>
+        <br></div>
 
-        <label for="eastwest">East/West</label>
-        <select id="eastwest">
+        <div class="row">
+        <div class="col-2"><label for="eastwest">East/West</label></div>
+        <div class="col"><select id="eastwest">
             <option value="E">E</option>
             <option value="W">W</option>
-        </select>
-        <br><br>
+        </select></div>
+        <br><br></div>
 
+        
         <h3>Burial Info</h3>
-        <label for="burialdepth">Burial Depth</label>
-        <input id="burialdepth" type="number" value="0" step=.01>
-        <br>
+        
+        <div class="row">
+        <div class="col-2"><label for="burialdepth">Burial Depth</label></div>
+        <div class="col"><input id="burialdepth" type="number" value="0" step=.01></div>
+        <br></div>
 
-        <label for="facebundles">Face Bundles</label>
-        <select id="facebundles">
+        <div class="row">
+        <div class="col-2"><label for="facebundles">Face Bundles</label></div>
+        <div class="col"><select id="facebundles">
             <option value="true">True</option>
             <option value="false">False</option>
-        </select>
-        <br>
+        </select></div>
+        <br></div>
 
-        <label for="southtohead">South to Head</label>
-        <input id="southtohead" type="number" value="0" step=0.01>
-        <br>
+        <div class="row">
+        <div class="col-2"><label for="southtohead">South to Head</label></div>
+        <div class="col"><input id="southtohead" type="number" value="0" step=0.01></div>
+        <br></div>
 
-        <label for="southtofeet">South to Feet</label>
-        <input id="southtofeet" type="number" value="0" step=.01>
-        <br>
+        <div class="row">
+        <div class="col-2"><label for="southtofeet">South to Feet</label></div>
+        <div class="col"><input id="southtofeet" type="number" value="0" step=.01></div>
+        <br></div>
 
-        <label for="westtohead">West to Head</label>
-        <input id="westtohead" type="number" value="0" step=.01>
-        <br>
+        <div class="row">
+        <div class="col-2"><label for="westtohead">West to Head</label></div>
+        <div class="col"><input id="westtohead" type="number" value="0" step=.01></div>
+        <br></div>
 
-        <label for="westtofeet">West to Feet</label>
-        <input id="westtofeet" type="number" value="0" step=.01>
-        <br>
+        <div class="row">
+        <div class="col-2"><label for="westtofeet">West to Feet</label></div>
+        <div class="col"><input id="westtofeet" type="number" value="0" step=.01></div>
+        <br></div>
 
-        <label for="buriallength">Burial Length</label>
-        <input id="buriallength" type="number" value="0" step=.01>
-        <br>
+        <div class="row">
+        <div class="col-2"><label for="buriallength">Burial Length</label></div>
+        <div class="col"><input id="buriallength" type="number" value="0" step=.01></div>
+        <br></div>
 
-        <label for="goods">Goods</label>
-        <select id="goods">
+        <div class="row">
+        <div class="col-2"><label for="goods">Goods</label></div>
+        <div class="col"><select id="goods">
             <option value="true">True</option>
             <option value="false">False</option>
-        </select>
-        <br>
+        </select></div>
+        <br></div>
 
-        <label for="samplescollected">Samples Collected</label>
-        <select id="samplescollected">
+        <div class="row">
+        <div class="col-2"><label for="samplescollected">Samples Collected</label></div>
+        <div class="col"><select id="samplescollected">
             <option value="true">True</option>
             <option value="false">False</option>
-        </select>
-        <br>
+        </select></div>
+        <br></div>
 
-        <label for="adultsubadult">Adult/Child</label>
-        <select id="adultsubadult">
+        <div class="row">
+        <div class="col-2"><label for="adultsubadult">Adult/Child</label></div>
+        <div class="col"><select id="adultsubadult">
             <option value="A">Adult</option>
             <option value="C">Child</option>
-        </select>
-        <br>
+        </select></div>
+        <br></div>
 
-        <label for="wrapping">Wrapping</label>
-        <select id="wrapping">
+        <div class="row">
+        <div class="col-2"><label for="wrapping">Wrapping</label></div>
+        <div class="col"><select id="wrapping">
             <option value="B">Bones and/or partial remnants of wrapping remains</option>
             <option value="H">Partial wrapping remains</option>
             <option value="W">Full or nearly full wrapping remains</option>
-        </select>
-        <br>
+        </select></div>
+        <br></div>
 
-        <label for="area">Area</label>
-        <select id="area">
+        <div class="row">
+        <div class="col-2"><label for="area">Area</label></div>
+        <div class="col"><select id="area">
             <option value="NE">North East</option>
             <option value="NW">North West</option>
             <option value="SE">South East</option>
             <option value="SW">South West</option>
-        </select>
-        <br>
+        </select></div>
+        <br></div>
 
-        <label for="ageatdeath">Age at Death</label>
-        <select id="ageatdeath">
+        <div class="row">
+        <div class="col-2"><label for="ageatdeath">Age at Death</label></div>
+        <div class="col"><select id="ageatdeath">
             <option value="A">Adult - years 15+</option>
             <option value="C">Child - years 3-15</option>
             <option value="I">Infant - years 1-3</option>
             <option value="N">Newborn - years 0-1</option>
-        </select>
+        </select></div>
+        <br></div>
         <br>
-        <br>
+</div>
+<button type="button" onclick="Go()">Predict Head Direction</button><br><br>
+<button type="button" onclick="Clear()">Clear</button><br><br>
 
-        <button type="button" onclick="Go()">Predict Head Direction</button>
-     </form>
+<h4 id="predictionResult" class="predictionResult" ></h4>
 
-     <div>
-         <h3 name="headdirection"></h3>
-     </div>
-     <div>
-         <button type="button" onclick="Output()">
-             <h3 id="output"></h3>
-         </button>
+ 
+</div>
+<br><br><br>
+<div>
+    <div>
+        <h4>Decision tree visualization>
+        <img class="clusters" src="~/img/DecisionTree.png" className="w-25 p-3" />
+        <p>
+            This decision tree image is a visual representation of how the supervised model has been set up. Inputs found in the form are the values the model intakes and sorts through to predict the head direction based on other burial information.
+        </p>
+
+        <br />
+        <br />
+    </div>
+    
+    <div>
+        <h4>Evaluation metrics</h4>
+        <img class="clusters" src="~/img/Precision.png" className="w-25 p-3" />
+        <p>
+            Various metrics showing the correctness of our supervised decision tree model. 
+        </p>
+    </div>
+    <div>
+        <h4>Matrix of training model metrics</h4>
+        <img class="clusters" src="~/img/Matrix.png" className="w-25 p-3" />
+        <p>
+           Visual display of training model accuracy in classifying East and West head directions.
+        </p>
+        <br />
+        <br />
+    </div>
+    
+    
+
+        <br />
+        <br />
+    </div>
+
+    <div>
+        <h4>Cluster Analysis Graph #4: </h4>
+        <img class="clusters" src="~/img/screenshot 2023-04-12 at 12.44.37 pm.png" className="w-25 p-3" />
+        <p>
+            The fourth cluster analysis offers insight into the degree of association between burial location within the grid, 
+            age at death, and head orientation. Interestingly, the results reveal that there is little correlation between the 
+            burial's position along the east-west axis of the grid and either the mummy's age at death or the direction in which 
+            their head was oriented. This suggests that the location of a burial site within the grid is not necessarily indicative 
+            of any particular age group or directional orientation. However, further investigation may be required to confirm these 
+            initial findings and explore any potential underlying factors that could be driving these patterns.
+        </p>
     </div>
 </div>
 
 <script>
 
-function Output()
-{
-
+function Clear() {
+  document.getElementById("predictionResult").innerHTML = "";
 }
-
 
 function Go() 
 {
@@ -321,12 +381,12 @@ function Go()
         .then(prediction => {
             console.log(prediction);
             // Update the h4 tag with the prediction result
-            document.querySelector('#predictionResult').textContent = String(prediction.predictedValue);
+            document.querySelector('#predictionResult').textContent = String("Predicted head direction: " + prediction.predictedValue);
             console.log("it got here at least");
         })
         .catch(error => {
             alert("Something went wrong...");
         });
-        }
+}
 
 </script>

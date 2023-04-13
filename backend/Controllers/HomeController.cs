@@ -116,7 +116,7 @@ namespace backend.Controllers
 
         public IActionResult Summary(string id, string sex, string headdirection, string burialdepth, string haircolor, string age, string textilecolor, string function, string structure, string estimatedstature, int pageNum = 1)
         {
-            int pageSize = 25;
+            int pageSize = 75;
 
             IQueryable<Burialmain> burial_main = _mummyContext.Burialmain.AsQueryable();
             if (!string.IsNullOrWhiteSpace(sex)) { burial_main = sex != "empty" ? burial_main.Where(burial => burial.Sex == sex) : burial_main.Where(burial => burial.Sex == null); }

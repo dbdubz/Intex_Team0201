@@ -309,7 +309,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .hero-fullscreen {
     width: 100%;
     min-height: 100vh;
-    background: url("../img/2002-0021.JPG") center center;
+    background: url("../img/skully.JPG") center center;
     background-size: cover;
     position: relative;
     padding: 120px 0 60px;
@@ -583,4 +583,11 @@ body {
     width: 60%;
     margin: 0 auto;
     justify-content: center;
+}
+
+.img-card {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
 }

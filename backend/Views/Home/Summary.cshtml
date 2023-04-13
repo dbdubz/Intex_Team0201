@@ -6,8 +6,9 @@
           integrity="sha512-ZYg+hQvLlM0W9C3P6vTpes5LmJ66G2EsroxDNzwD6qiulckldb29eD9I672HL2X+LH5nRhY1sQqZLJGB+aUUPg==" 
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-     
-<div class="row m-1 p-1">
+<div class="container">
+    <div class="row">
+        <div class="col-3">
         <div id="categories" class="col-3">
             <form asp-action="Summary" method="get">
                 <!--<div class="Form-group">
@@ -288,8 +289,31 @@
                 <button type="submit" class="btn btn-success btn-sm" id="filter" name="filter">Search</button>
                 <a asp-controller="Home" asp-action="Summary" class="btn btn-success btn-sm">Clear</a>
             </form>
+            
             </div>
+            <div class="border border-dark w-100 p-3">
+                <h4>Key:</h4><br />
+                A: Brown - Red<br />
+                B: Brown - Dark Brown - Light Brown<br />
+                D: Blonde<br />
+                K: Black<br />
+                R: Red - Red/Black<br />
+                T: Tan<br />
+                Y: Yellow<br /><br />
 
+                Age At Death:<br />
+                A: Adult<br />
+                C: Child<br />
+                I: Infant<br />
+                N: Newborn<br /><br />
+
+                Head Direction:<br />
+                E: East<br />
+                W: West<br />
+                I: Inconclusive<br />
+            </div>
+            </div>
+        <div class="col">
         <div class="col">
         @foreach(Burialmain b in Model.Burialmains)
         {
@@ -301,4 +325,7 @@
              class="btn-group pull-right m-1"></div>
 
         </div>
+            </div>
     </div>
+    </div>
+</div>
