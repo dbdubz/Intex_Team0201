@@ -1,0 +1,19 @@
+﻿if (Input.Role == "authenticated")
+                    {
+                        user.TwoFactorEnabled = false;
+                        await _userManager.AddToRoleAsync(user, "authenticated");
+                    }
+                    else
+                    {
+                        user.TwoFactorEnabled = false;
+                        await _userManager.AddToRoleAsync(user, "non-authenticated");
+                    }
+
+if (User.IsInRole("authenticated") && !user.TwoFactorEnabled)
+                        {
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = "/Identity/Account/Manage/TwoFactorAuthentication" });
+                        }
+                        else
+                        {
+                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        }

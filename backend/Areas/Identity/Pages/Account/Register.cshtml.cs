@@ -86,8 +86,7 @@ namespace backend.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.UserName, Email = Input.Email };
-
+                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -101,7 +100,6 @@ namespace backend.Areas.Identity.Pages.Account
                         user.TwoFactorEnabled = false;
                         await _userManager.AddToRoleAsync(user, "non-authenticated");
                     }
-
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -117,15 +115,7 @@ namespace backend.Areas.Identity.Pages.Account
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        if (User.IsInRole("authenticated") && !user.TwoFactorEnabled)
-                        {
-                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = "/Identity/Account/Manage/TwoFactorAuthentication" });
-                        }
-                        else
-                        {
-                            return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                        }
-                        
+                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
                     }
                     else
                     {
@@ -140,7 +130,6 @@ namespace backend.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["Roles"] = _roleManager.Roles.ToList();
             return Page();
         }
     }
