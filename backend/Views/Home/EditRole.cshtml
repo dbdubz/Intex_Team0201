@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Microsoft.AspNetCore.Identity.IdentityRole  
+@{
+}
+
+<h1>Edit @Model.Name</h1>
+<br />
+<table class="table-stribed table-bordered p-3">
+    <thead>
+        <tr>
+            <td>Username</td>
+            <td>Email</td>
+            <td>MFA</td>
+            @if (Model.Name == "authenticated")
+            {
+                <td></td>
+            } 
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in ViewBag.Users)
+        {
+        <tr>
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@user.TwoFactorEnabled</td>
+            @if (Model.Name == "authenticated")
+            {
+                <td><a asp-controller="Home" asp-action="RemoveUser" asp-route-username="@user.UserName" asp-route-rolename="@Model.Name">remove</a></td>
+
+            }
+        </tr>
+        }
+    </tbody>
+</table>

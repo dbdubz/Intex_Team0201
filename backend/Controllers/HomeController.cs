@@ -321,19 +321,82 @@ namespace backend.Controllers
         }
 
         [Authorize(Roles = "authenticated")]
-        public IActionResult ViewRoles()
+        public async Task<IActionResult> ViewRoles()
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name);
-            var roles = _roleManager.Roles;
-            List<IdentityUser> users = _userManager.Users.ToList();
+
             if (!user.Result.TwoFactorEnabled)
             {
                 return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
             }
             else
             {
-                //var roles = _roleManager.Roles.ToList();
+                var auth_users = await _userManager.GetUsersInRoleAsync(roleName: "authenticated");
+                var unauth_users = await _userManager.GetUsersInRoleAsync(roleName: "non-authenticated");
+                ViewBag.Authenticated = auth_users.Count();
+                ViewBag.NonAuthenticated = unauth_users.Count();
+
+                var roles = _roleManager.Roles.ToList();
                 return View(roles);
+            }
+        }
+
+        [Authorize(Roles = "authenticated")]
+        [HttpGet]
+        public async Task<IActionResult> EditRole(string rolename)
+        {
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+
+            if (!user.Result.TwoFactorEnabled)
+            {
+                return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+            }
+            else
+            {
+                IdentityRole role = await _roleManager.FindByNameAsync(rolename);
+                var users = await _userManager.GetUsersInRoleAsync(roleName: $"{rolename}");
+                ViewBag.Users = users.ToList();
+                return View(role);
+            }
+        }
+
+        [Authorize(Roles = "authenticated")]
+        [HttpGet]
+        public async Task<IActionResult> RemoveUser(string rolename, string username)
+        {
+            var user = _userManager.FindByNameAsync(User.Identity.Name);
+
+            if (!user.Result.TwoFactorEnabled)
+            {
+                return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+            }
+            else
+            {
+                IdentityUser delUser = await _userManager.FindByNameAsync(username);
+                var result = await _userManager.RemoveFromRoleAsync(delUser, rolename);
+                var result2 = await _userManager.AddToRoleAsync(delUser, "non-authenticated");
+
+                if (result.Succeeded && result2.Succeeded)
+                {
+                    if (!user.Result.TwoFactorEnabled)
+                    {
+                        return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+                    }
+                    else
+                    {
+                        IdentityRole role = await _roleManager.FindByNameAsync(rolename);
+                        var users = await _userManager.GetUsersInRoleAsync(roleName: $"{rolename}");
+                        ViewBag.Users = users.ToList();
+                        return View("EditRole", role);
+                    }
+                }
+                else
+                {
+                    //IdentityRole role = await _roleManager.FindByNameAsync(rolename);
+
+                    return View("Index");
+                }
+                
             }
         }
 
