@@ -239,9 +239,9 @@ namespace backend.Controllers
                     }
                 ).Distinct().ToList();
             IQueryable<Textilefunction> finalfunctions = textile_function.Where(sl => functions.Select(s => s.Id).ToList().Contains(sl.Id));
-            
-            /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ THIS WILL WORK WHEN DATA IS PROVIDED ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            var statures = burial_main
+
+            // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ THIS WILL WORK WHEN DATA IS PROVIDED ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            /*var statures = burial_main
                 .Join(bodyanalysis_intermediary, b => b.Id, bi => bi.MainBurialmainid, (b, bi) => new { b, bi })
                 .Join(bodyanalysis, bbi => bbi.bi.MainBodyanalysischartid, ba => ba.Id, (bbi, ba) => new { bbi, ba })
                 .Select(
@@ -253,6 +253,7 @@ namespace backend.Controllers
                 ).Distinct().ToList();
 
             IQueryable<Bodyanalysischart> finalstatures = bodyanalysis.Where(b => statures.Select(s => s.Id).ToList().Contains(b.Id));*/
+            IQueryable<Bodyanalysischart> finalstatures = bodyanalysis;
             
             ViewBag.Sex = burial_main.Select(burial => burial.Sex).Distinct().OrderBy(burial => burial).ToList();
             ViewBag.BurialDepth = burial_main.Select(burial => burial.BurialDepth).Distinct().OrderBy(burial => burial).ToList();
@@ -263,7 +264,7 @@ namespace backend.Controllers
             ViewBag.TextileFunction = finalfunctions.Distinct().OrderBy(f => f.Value).ToList();
             ViewBag.TextileColor = finalcolors.Distinct().OrderBy(f => f.Value).ToList();
             ViewBag.TextileStructure = finalstructures.Distinct().OrderBy(f => f.Value).ToList();
-            //ViewBag.EstimateStature = finalstatures.Distinct().OrderBy(f => f.Estimatestature).ToList(); ~~~~~ VIEWBAG FOR WHEN DATA IS ADDED ~~~~~
+            ViewBag.EstimateStature = finalstatures.Distinct().OrderBy(f => f.Estimatestature).ToList(); //~~~~~ VIEWBAG FOR WHEN DATA IS ADDED ~~~~~
 
             return View(x);
         }
