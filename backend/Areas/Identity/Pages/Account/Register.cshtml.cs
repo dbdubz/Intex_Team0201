@@ -44,6 +44,8 @@ namespace backend.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
+        public IEnumerable<IdentityRole> Roles { get; set; }
+
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public class InputModel
@@ -75,7 +77,7 @@ namespace backend.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            ViewData["Roles"] = _roleManager.Roles.ToList();
+            Roles = _roleManager.Roles.ToList();
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
@@ -86,10 +88,13 @@ namespace backend.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
+                _userManager.Options.SignIn.RequireConfirmedAccount = false;
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    user.EmailConfirmed = true;
+
                     if (Input.Role == "authenticated")
                     {
                         user.TwoFactorEnabled = false;
