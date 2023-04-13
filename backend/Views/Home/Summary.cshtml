@@ -287,6 +287,35 @@
                 </div>
                 <!-- ~~~~~~~~~~~~~~~~~~ Future home for Estimated structure when data is provided ~~~~~~~~~~~~~~~~~~ -->
                 <!-- ~~~~~~~~~~~~~~~~~~ Find skeleton code for html in EstimatedstructureHTML.txt inside in the backend root folder ~~~~~~~~~~~~~~~~~~ -->
+                <div class="form-group">
+                    <label for="estimatestature">Estimate Stature</label>
+                    <select name="estimatestature">
+                        @if (ViewBag.SelectedEstimateStature == null)
+                        {
+                            <option value="" selected></option>
+                        }
+
+                        @foreach (var x in ViewBag.EstimateStature)
+                        {
+                            if (x == null && ViewBag.SelectedEstimateStature == "empty")
+                            {
+                                <option value="empty" selected>empty</option>
+                            }
+                            else if (x.Estimatestature.ToString() == null || x.Estimatestature.ToString().Trim() == "")
+                            {
+                                <option value="empty">empty</option>
+                            }
+                            else if (x.Estimatestature.ToString() == ViewBag.SelectedEstimateStature)
+                            {
+                                <option value="@x.Estimatestature" selected>@x.Estimatestature</option>
+                            }
+                            else
+                            {
+                                <option value="@x.Estimatestature">@x.Estimatestature</option>
+                            }
+                        }
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-success btn-sm" id="filter" name="filter">Search</button><br /><br>
                 <a asp-controller="Home" asp-action="Summary" class="btn btn-danger btn-sm">Clear</a><br /><br />
             </form>
@@ -328,6 +357,5 @@
 
         </div>
             </div>
-    </div>
     </div>
 </div>
