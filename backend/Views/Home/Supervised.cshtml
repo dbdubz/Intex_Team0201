@@ -3,10 +3,11 @@
 }
 
 <div>
+    <h4 id="predictionResult" class="predictionResult" ></h4>
     <form class="form-group">
         <h3>Burial Location</h3>
         <label for="squarenorthsouth">Square North/South</label>
-        <input id="squarenorthsouth" type="number">
+        <input id="squarenorthsouth" type="number" value="0">
         <br>
 
         <label for="northsouth">North/South</label>
@@ -17,7 +18,7 @@
         <br>
 
         <label for="squareeastwest">Square East/West</label>
-        <input id="squareeastwest" type="number">
+        <input id="squareeastwest" type="number" value="0">
         <br>
 
         <label for="eastwest">East/West</label>
@@ -29,7 +30,7 @@
 
         <h3>Burial Info</h3>
         <label for="burialdepth">Burial Depth</label>
-        <input id="burialdepth" type="number" step=.01>
+        <input id="burialdepth" type="number" value="0" step=.01>
         <br>
 
         <label for="facebundles">Face Bundles</label>
@@ -40,23 +41,23 @@
         <br>
 
         <label for="southtohead">South to Head</label>
-        <input id="southtohead" type="number" step=0.01>
+        <input id="southtohead" type="number" value="0" step=0.01>
         <br>
 
         <label for="southtofeet">South to Feet</label>
-        <input id="southtofeet" type="number" step=.01>
+        <input id="southtofeet" type="number" value="0" step=.01>
         <br>
 
         <label for="westtohead">West to Head</label>
-        <input id="westtohead" type="number" step=.01>
+        <input id="westtohead" type="number" value="0" step=.01>
         <br>
 
         <label for="westtofeet">West to Feet</label>
-        <input id="westtofeet" type="number" step=.01>
+        <input id="westtofeet" type="number" value="0" step=.01>
         <br>
 
         <label for="buriallength">Burial Length</label>
-        <input id="buriallength" type="number" step=.01>
+        <input id="buriallength" type="number" value="0" step=.01>
         <br>
 
         <label for="goods">Goods</label>
@@ -107,10 +108,222 @@
         <br>
         <br>
 
-        <button type="submit">Predict Head Direction</button>
+        <button type="button" onclick="Go()">Predict Head Direction</button>
      </form>
 
      <div>
          <h3 name="headdirection"></h3>
      </div>
+     <div>
+         <button type="button" onclick="Output()">
+             <h3 id="output"></h3>
+         </button>
+    </div>
 </div>
+
+<script>
+
+function Output()
+{
+
+}
+
+
+function Go() 
+{
+    var eastwest_E = 0.0
+    var eastwest_W = 0.0
+    var adultsubadult_A = 0.0
+    var adultsubadult_C = 0.0
+    var wrapping_B = 0.0
+    var wrapping_H = 0.0
+    var wrapping_W = 0.0
+    var area_NE = 0.0
+    var area_NW = 0.0
+    var area_SE = 0.0
+    var area_SW = 0.0
+    var ageatdeath_A = 0.0
+    var ageatdeath_C = 0.0
+    var ageatdeath_I = 0.0
+    var ageatdeath_N = 0.0
+    var northsouth_N = 0.0
+    var samplescollected = 0.0
+    var goods = 0.0
+    var facebundles = 0.0
+
+    var squarenorthsouth = parseFloat(document.getElementById("squarenorthsouth").value)
+    var squareeastwest = parseFloat(document.getElementById("squareeastwest").value)
+    var burialdepth = parseFloat(document.getElementById("burialdepth").value)
+    var southtohead = parseFloat(document.getElementById("southtohead").value)
+    var westtohead = parseFloat(document.getElementById("westtohead").value)
+    var buriallength = parseFloat(document.getElementById("buriallength").value)
+    var southtofeet = parseFloat(document.getElementById("southtofeet").value)
+    var westtofeet = parseFloat(document.getElementById("westtofeet").value)
+
+    var aa = document.getElementById("samplescollected").value
+    if (aa = "true")
+    {
+        samplescollected = 1.0
+    }
+    else
+    {
+        samplescollected = 0.0
+    }
+
+    var l = document.getElementById("goods").value
+    if (l = "true")
+    {
+        goods = 1.0
+    }
+    else
+    {
+        goods = 0.0
+    }
+
+    var f = document.getElementById("facebundles").value
+    if (f == "true")
+    {
+        facebundles = 1.0
+    }
+    else
+    {
+        facebundles = 0.0
+    }
+
+
+    var b = document.getElementById("northsouth").value
+    if (b == "N")
+    {
+        northsouth_N = 1.0
+    }
+    else
+    {
+        northsouth_N = 0.0
+    }
+    
+    var d = document.getElementById("eastwest").value
+    if (d == "E")
+    {
+        eastwest_E = 1.0
+        eastwest_W = 0.0
+    }
+    else
+    {
+        eastwest_E = 0.0
+        eastwest_W = 1.0
+    }
+
+    var m = document.getElementById("adultsubadult").value
+    if (m == "A")
+    {
+        adultsubadult_A = 1.0
+        adultsubadult_C = 0.0
+    }
+    else
+    {
+        adultsubadult_A = 0.0
+        adultsubadult_C = 1.0
+    }
+
+    var n = document.getElementById("wrapping").value
+    if (n == "B")
+    {
+        wrapping_B = 1.0
+    }
+    else if (n == "H")
+    {
+        wrapping_H = 1.0
+    }
+    else
+    {
+        wrapping_W = 1.0
+    }
+
+    var o = document.getElementById("area").value
+    if (o == "NE")
+    {
+        area_NE = 1.0
+    }
+    else if (o == "NW")
+    {
+        area_NW = 1.0
+    }
+    else if (o == "SW")
+    {
+        area_SW = 1.0
+    }
+    else
+    {
+        area_SE = 1.0
+    }
+
+    var p = document.getElementById("ageatdeath").value
+    if (p == "A")
+    {
+        ageatdeath_A = 1.0
+    }
+    else if (p == "C")
+    {
+        ageatdeath_C = 1.0
+    }
+    else if (p == "I")
+    {
+        ageatdeath_I = 1.0
+    }
+    else
+    {
+        ageatdeath_N = 1.0
+    }
+
+    
+
+    var inputData2 =  {
+  "squarenorthsouth": squarenorthsouth,
+  "burialdepth": burialdepth,
+  "facebundles": facebundles,
+  "southtohead": southtohead,
+  "squareeastwest": squareeastwest,
+  "goods": goods,
+  "westtohead": westtohead,
+  "samplescollected": samplescollected,
+  "buriallength": buriallength,
+  "westtofeet": westtofeet,
+  "southtofeet": southtofeet,
+  "northsouth_N": northsouth_N,
+  "eastwest_E": eastwest_E,
+  "eastwest_W": eastwest_W,
+  "adultsubadult_A": adultsubadult_A,
+  "adultsubadult_C": adultsubadult_C,
+  "wrapping_B": wrapping_B,
+  "wrapping_H": wrapping_H,
+  "wrapping_W": wrapping_W,
+  "area_NE": area_NE,
+  "area_NW": area_NW,
+  "area_SE": area_SE,
+  "area_SW": area_SW,
+  "ageatdeath_A": ageatdeath_A,
+  "ageatdeath_C": ageatdeath_C,
+  "ageatdeath_I": ageatdeath_I,
+  "ageatdeath_N": ageatdeath_N
+}
+
+    fetch('/score', {
+        method: 'POST',
+        body: JSON.stringify(inputData2),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .then(prediction => {
+            console.log(prediction);
+            // Update the h4 tag with the prediction result
+            document.querySelector('#predictionResult').textContent = String(prediction.predictedValue);
+            console.log("it got here at least");
+        })
+        .catch(error => {
+            alert("Something went wrong...");
+        });
+        }
+
+</script>
