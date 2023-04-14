@@ -57,7 +57,11 @@ namespace backend.Controllers
             {
                 return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
             }
-            return View(new Burialmain());
+            long lastId = _mummyContext.Burialmain.Max(b => b.Id);
+            long nextId = lastId + 1;
+            Burialmain newBurial = new Burialmain();
+            newBurial.Id = nextId;
+            return View(newBurial);
         }
 
         [HttpPost]
