@@ -20,7 +20,7 @@ namespace backend.Controllers
         private RoleManager<IdentityRole> _roleManager { get; set; }
         private UserManager<IdentityUser> _userManager { get; set; }
 
-        public HomeController(mummyContext data, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager) //Bring in the _mummyContext.
+        public HomeController(mummyContext data, RoleManager<IdentityRole> roleManager, UserManager<IdentityUser> userManager) //Bring in the _mummyContext and other required formats.
         {
             _mummyContext = data;
             _roleManager = roleManager;
@@ -33,7 +33,7 @@ namespace backend.Controllers
             return View();
         }
 
-        public IActionResult Details(long burialid)
+        public IActionResult Details(long burialid) //Showing all details of a signe burialid
         {
             var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
 
@@ -50,7 +50,7 @@ namespace backend.Controllers
 
         [HttpGet]
         [Authorize(Roles = "authenticated")]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create() //Creating a new Burial
         {
             var user = await _userManager.GetUserAsync(User);
             if (!user.TwoFactorEnabled)
@@ -77,8 +77,8 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "authenticated")]
-        public IActionResult Delete(long burialid)
+        [Authorize(Roles = "authenticated")] 
+        public IActionResult Delete(long burialid) //Delete
         {
             var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
 
@@ -86,7 +86,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "authenticated")]
+        [Authorize(Roles = "authenticated")] //Actually deleting
         public IActionResult Delete(Burialmain ar)
         {
             //The argument passed is the id of the model that you want to delete.
@@ -96,7 +96,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "authenticated")]
+        [Authorize(Roles = "authenticated")] //Got to edit page, passing in the right one the user clicked on.
         public IActionResult Edit(long burialid)
         {
             var SingleBurial = _mummyContext.Burialmain.Single(x => x.Id == burialid);
@@ -105,7 +105,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "authenticated")]
+        [Authorize(Roles = "authenticated")] //Edit the POST
         public IActionResult Edit(Burialmain ar) //Update information in database for the movie.
         {
             _mummyContext.Update(ar);
@@ -117,7 +117,7 @@ namespace backend.Controllers
         public IActionResult Summary(string id, string sex, string headdirection, string burialdepth, string haircolor, string age, string textilecolor, string function, string structure, string estimatedstature, int pageNum = 1)
         {
             int pageSize = 75;
-
+            //All of these queries are to filter. Lots of work went into these filters to work as well as they do!
             IQueryable<Burialmain> burial_main = _mummyContext.Burialmain.AsQueryable();
             if (!string.IsNullOrWhiteSpace(sex)) { burial_main = sex != "empty" ? burial_main.Where(burial => burial.Sex == sex) : burial_main.Where(burial => burial.Sex == null); }
             if (!string.IsNullOrWhiteSpace(age)) { burial_main = burial_main.Where(burial => burial.Ageatdeath == age); }
@@ -168,6 +168,7 @@ namespace backend.Controllers
                 burial_main = burial_main.Where(burial => bodyanalysis_intermediary.Select(bi => bi.MainBurialmainid).Distinct().ToList().Contains(burial.Id));
             }
 
+            //Pagination Baby
             var x = new BurialViewModel
             {
                 Burialmains = burial_main
@@ -186,7 +187,7 @@ namespace backend.Controllers
             };
 
 
-            // ViewBag
+            // ViewBags
             ViewBag.SelectedSex = sex;
             ViewBag.SelectedBurialDepth = burialdepth;
             ViewBag.SelectedAgeAtDeath = age;
@@ -274,18 +275,18 @@ namespace backend.Controllers
             return View();
         }
 
-        public IActionResult Unsupervised()
+        public IActionResult Unsupervised() //Unsupervised 
         {
             return View();
         }
 
-        public IActionResult Unsupervised2()
+        public IActionResult Unsupervised2() //Unsupervised2
         {
             return View();
         }
 
         [Authorize(Roles="authenticated")] //These are for Authorized users only.
-        public IActionResult CreateRole()
+        public IActionResult CreateRole() //Creating a new user
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -322,7 +323,7 @@ namespace backend.Controllers
         }
 
         [Authorize(Roles = "authenticated")]
-        public async Task<IActionResult> ViewRoles()
+        public async Task<IActionResult> ViewRoles() //Allows them to view new roles
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -342,9 +343,9 @@ namespace backend.Controllers
             }
         }
 
-        [Authorize(Roles = "authenticated")]
+        [Authorize(Roles = "authenticated")] 
         [HttpGet]
-        public async Task<IActionResult> EditRole(string rolename)
+        public async Task<IActionResult> EditRole(string rolename) //Edit user permissions
         {
             var user = _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -361,7 +362,7 @@ namespace backend.Controllers
             }
         }
 
-        [Authorize(Roles = "authenticated")]
+        [Authorize(Roles = "authenticated")] //Removing the users
         [HttpGet]
         public async Task<IActionResult> RemoveUser(string rolename, string username)
         {
