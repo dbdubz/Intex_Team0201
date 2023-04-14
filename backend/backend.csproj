@@ -45,4 +45,8 @@
     <Folder Include="wwwroot\template\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\model\modeling2.onnx" />
+  </ItemGroup>
+
 </Project>

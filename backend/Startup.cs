@@ -32,7 +32,7 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<InferenceSession>(
-           new InferenceSession("Models/Onnx/modeling2.onnx")
+           new InferenceSession("wwwroot/model/modeling2.onnx")
             );
             services.Configure<CookiePolicyOptions>(options =>
             {
